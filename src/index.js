@@ -4,37 +4,36 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import { createStore, combineReducers, applyMiddleware } from "redux";
-// import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 import {
-    ConnectedRouter,
-    routerReducer,
-    routerMiddleware
-  } from 'react-router-redux';
+  ConnectedRouter,
+  routerReducer,
+  routerMiddleware
+} from "react-router-redux";
 
-import { Provider } from 'react-redux'
-import { Route } from 'react-router';
-import createHistory from 'history/createBrowserHistory';
+import { Provider } from "react-redux";
+import { Route } from "react-router";
+import createHistory from "history/createBrowserHistory";
 
 import RadarItemReducer from "./reducers/RadarItemReducer";
 import LoggingReducer from "./reducers/LoggingReducer";
 
 const history = createHistory();
-// const middleware = routerMiddleware(history);
+const middleware = routerMiddleware(history);
 
 const store = createStore(
-  combineReducers({
-    radarItem: RadarItemReducer,
-    LoggingReducer,
-    // router: routerReducer
-  },)
-// applyMiddleware(middleware))
+  combineReducers(
+    {
+      radarItem: RadarItemReducer,
+      LoggingReducer,
+      router: routerReducer
+    },
+    applyMiddleware(middleware)
+  )
 );
 
-
-// ReactDOM.render(<App store={store} />, document.getElementById('root'));
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter  history={history}>
+    <ConnectedRouter history={history}>
       <Route path="/" component={App} />
     </ConnectedRouter>
   </Provider>,
