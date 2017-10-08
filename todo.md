@@ -1,8 +1,12 @@
 # //ToDo
 * Add radar item
+  * ~~Test data~~
+  * Manual item entry
 * Display radar item
+  * ~~Basic display~~
+  * Sortable
+  * Filterable
 * Update radar item
-* view history of radar item
-
-# minor
-* install styled components
+* Radar item history
+  * track history of item
+  * view history of radar item
