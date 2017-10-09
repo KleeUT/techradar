@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { PrimaryHeading } from "./components/Headings";
-import * as Actions from "./actions/Actions";
+// import * as Actions from "./actions/Actions";
 import RadarItem from "./components/RadarItem";
 import Button from "./components/Button";
 import { push } from "react-router-redux";
@@ -45,7 +45,7 @@ RadarDisplay.propTypes = {
 const matchDispachToProps = dispach => {
   return {
     // addItem: () => dispach(Actions.AddRadarItem({name:`Test Item ${Math.random()}`, section:'testing'}))
-    addItem: () => dispach(push("/add-item"))
+    addItem: () => dispach(push('/add-item'))
   };
 };
 

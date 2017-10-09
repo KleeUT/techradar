@@ -1,20 +1,19 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import styled from "styled-components";
-// import {Route} from 'react-router';
 import RadarDisplay from "./RadarDisplay";
 
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import {
   ConnectedRouter,
   routerReducer,
-  routerMiddleware
+  routerMiddleware,
+  push
 } from "react-router-redux";
 
 import { Provider } from "react-redux";
 import { Route } from "react-router";
-import createHistory from "history/createBrowserHistory";
+import createHistory from 'history/createBrowserHistory';
 
 import RadarItemReducer from "./reducers/RadarItemReducer";
 import LoggingReducer from "./reducers/LoggingReducer";
@@ -22,15 +21,15 @@ import LoggingReducer from "./reducers/LoggingReducer";
 const history = createHistory();
 const middleware = routerMiddleware(history);
 
+
 const store = createStore(
   combineReducers(
     {
-      radarItem: RadarItemReducer,
       LoggingReducer,
+      radarItem: RadarItemReducer,
       router: routerReducer
-    },
+    }),
     applyMiddleware(middleware)
-  )
 );
 
 class App extends Component {
@@ -62,9 +61,8 @@ class App extends Component {
         <ConnectedRouter history={history}>
           <BackgroundContainer className="App">
             <ContentContainer>
-              <Route path="/">
-                <RadarDisplay />
-              </Route>
+              <Route exact path="/" component={RadarDisplay} /> 
+              <Route path="/add-item" component = {() => <h1>comp</h1>} />
             </ContentContainer>
           </BackgroundContainer>
         </ConnectedRouter>
