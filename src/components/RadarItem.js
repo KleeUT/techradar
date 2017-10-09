@@ -1,16 +1,24 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import propTypes from "prop-types";
 
-export default ({name, ring, section, notes}) => {
+const Component = ({ name, ring, section, notes }) => {
+  const TextDisplay = styled.td``;
+  return (
+    <tr>
+      <TextDisplay>{name}</TextDisplay>
+      <TextDisplay>{section}</TextDisplay>
+      <TextDisplay>{ring}</TextDisplay>
+      <TextDisplay>{notes}</TextDisplay>
+    </tr>
+  );
+};
 
-    const TextDisplay = styled.div`
-        display:inline;
-        padding:1em;
-    `
-    return [
-        (<TextDisplay>{name}</TextDisplay>), 
-        (<TextDisplay>{ring}</TextDisplay>), 
-        (<TextDisplay>{section}</TextDisplay>), 
-        (<TextDisplay>{notes}</TextDisplay>)
-    ]
-}
+Component.propTypes = {
+  name: propTypes.string,
+  ring: propTypes.string,
+  section: propTypes.string,
+  notes: propTypes.string
+};
+
+export default Component;
