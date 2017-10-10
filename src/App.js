@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import "./App.css";
 import styled from "styled-components";
 import RadarDisplay from "./RadarDisplay";
+import AddItem from "./AddItem";
 
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import {
   ConnectedRouter,
   routerReducer,
-  routerMiddleware,
-  push
+  routerMiddleware
 } from "react-router-redux";
 
 import { Provider } from "react-redux";
@@ -62,7 +62,7 @@ class App extends Component {
           <BackgroundContainer className="App">
             <ContentContainer>
               <Route exact path="/" component={RadarDisplay} /> 
-              <Route path="/add-item" component = {() => <h1>comp</h1>} />
+              <Route path="/add-item" component = {AddItem} />
             </ContentContainer>
           </BackgroundContainer>
         </ConnectedRouter>
