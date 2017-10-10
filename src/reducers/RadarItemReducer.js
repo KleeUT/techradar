@@ -1,10 +1,5 @@
 import * as Actions from "../actions/Actions";
-export default (state = {nameo:{
-    name: "nameo",
-    ring: "assess",
-    section: "test",
-    notes: "This thing looks pretty cool hey!"
-  }}, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case Actions.AddRadarItem().type: {
       const newState = { ...state };
@@ -12,7 +7,6 @@ export default (state = {nameo:{
       return newState;
     }
     default:
-      console.log(`ignoring action with type: ${action.type}`);
       return state;
   }
 };
