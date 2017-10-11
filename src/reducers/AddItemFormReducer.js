@@ -21,7 +21,14 @@ const AddItemReducer = (
 
     case Actions.UpdateNotes().type:
       return { ...state, notes: action.value };
-
+    case Actions.ClearForm.type: {
+      return {
+        name: "",
+        ring: "",
+        section: "",
+        notes: ""
+      };
+    }
     default:
       return state;
   }

@@ -17,6 +17,7 @@ import createHistory from 'history/createBrowserHistory';
 
 import RadarItemReducer from "./reducers/RadarItemReducer";
 import LoggingReducer from "./reducers/LoggingReducer";
+import AddItemForm from './reducers/AddItemFormReducer';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -26,6 +27,7 @@ const store = createStore(
   combineReducers(
     {
       LoggingReducer,
+      AddItemForm,
       radarItem: RadarItemReducer,
       router: routerReducer
     }),
@@ -54,6 +56,7 @@ class App extends Component {
     width:75%;
     background-color:rgba(255,255,255,0.5);
     position:relative;
+    font-size:18px;
     `;
 
     return (

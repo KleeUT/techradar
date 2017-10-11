@@ -12,6 +12,16 @@ describe("Add Item Form: ", () => {
     expect(newState).toEqual(emptyState);
   });
 
+  it("Should return empty state clear action", () => {
+    const newState = AddItemForm({
+        name:'1',
+        ring:'2',
+        section:'3',
+        notes:'4'
+    }, Actions.ClearForm);
+    expect(newState).toEqual(emptyState);
+  });
+
   describe("Should update properties: ", () => {
     it("Name", () => {
       const newState = AddItemForm(
