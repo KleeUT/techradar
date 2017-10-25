@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
 import styled from "styled-components";
-import RadarDisplay from "./RadarDisplay";
-import AddItem from "./AddItem";
 
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import {
@@ -15,9 +12,16 @@ import { Provider } from "react-redux";
 import { Route } from "react-router";
 import createHistory from 'history/createBrowserHistory';
 
+import "./App.css";
+
+import RadarDisplay from "./RadarDisplay";
+import AddItem from "./AddItem";
+import EditItem from "./EditItem";
+
 import RadarItemReducer from "./reducers/RadarItemReducer";
 import LoggingReducer from "./reducers/LoggingReducer";
-import AddItemForm from './reducers/AddItemFormReducer';
+import AddItemFormReducer from './reducers/AddItemFormReducer';
+import EditItemFormReducer from './reducers/EditItemFormReducer';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -27,7 +31,8 @@ const store = createStore(
   combineReducers(
     {
       LoggingReducer,
-      AddItemForm,
+      addItemForm: AddItemFormReducer,
+      editItemForm: EditItemFormReducer,
       radarItem: RadarItemReducer,
       router: routerReducer
     }),
@@ -66,6 +71,7 @@ class App extends Component {
             <ContentContainer>
               <Route exact path="/" component={RadarDisplay} /> 
               <Route path="/add-item" component = {AddItem} />
+              <Route path="/edit-item" component = {EditItem} />
             </ContentContainer>
           </BackgroundContainer>
         </ConnectedRouter>

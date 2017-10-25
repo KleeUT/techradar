@@ -3,19 +3,19 @@ import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import propTypes from "prop-types";
 import styled from "styled-components";
-import * as FormActions from "./actions/AddItemFormActions";
+import * as FormActions from "./actions/EditItemFormActions";
 import * as RadarActions from "./actions/Actions";
 import Button from "./components/Button";
 
 const TextBox = styled.textarea`
 display:block;
 font-size:18px;
-padding:0.5em;
+pEditing:0.5em;
 margin:0.5em;
 width:100%;
 `;
 
-const AddItem = ({
+const EditItem = ({
   onSubmit,
   onCancel,
   onNameChange,
@@ -32,9 +32,9 @@ const AddItem = ({
   }
   return (
     <div style={{ width: "100%" }}>
-      <h1>Add Item</h1>
+      <h1>Edit Item</h1>
       {/* <form onSubmit={onSubmit}> */}
-        <TextInput onChange={onNameChange} text={name} label={"Name: "} />
+        <StaticText text={name} label={"Name: "} />
         <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
         <TextInput
           onChange={onSectionChange}
@@ -51,7 +51,7 @@ const AddItem = ({
 const Input = styled.input`
 display:block;
 font-size:18px;
-padding:0.5em;
+pEditing:0.5em;
 margin:0.5em;
 width:100%;`;
 const TextInput = ({ onChange, text, label }) => {
@@ -67,10 +67,13 @@ const TextInput = ({ onChange, text, label }) => {
   );
 };
 
-AddItem.propTypes = {
+const StaticText = ({text, label}) => {
+  return <div>{label} {text}</div>
+} 
+
+EditItem.propTypes = {
   onSubmit: propTypes.func,
   onCancel: propTypes.func,
-  onNameChange: propTypes.func,
   onRingChange: propTypes.func,
   onSectionChange: propTypes.func,
   onNotesChange: propTypes.func,
@@ -82,9 +85,6 @@ AddItem.propTypes = {
 
 const matchDispachToProps = (dispach, ownProps) => {
   return {
-    onNameChange: e => {
-      dispach(FormActions.UpdateName(e.target.value));
-    },
     onRingChange: e => {
       dispach(FormActions.UpdateRing(e.target.value));
     },
@@ -95,7 +95,7 @@ const matchDispachToProps = (dispach, ownProps) => {
       dispach(FormActions.UpdateNotes(e.target.value));
     },
     onSubmit: (e) =>{
-      dispach(RadarActions.AddRadarItem(e))
+      dispach(RadarActions.UpdateRadarItem(e))
       dispach(push(""))      
     },
     onCancel: () => {
@@ -106,26 +106,11 @@ const matchDispachToProps = (dispach, ownProps) => {
 };
 const matchStateToProps = state => {
   return {
-    name: state.addItemForm.name,
-    ring: state.addItemForm.ring,
-    section: state.addItemForm.section,
-    notes: state.addItemForm.notes
+    name: state.editItemForm.name,
+    ring: state.editItemForm.ring,
+    section: state.editItemForm.section,
+    notes: state.editItemForm.notes
   };
 };
 
-// const mergeProps = (stateProps, dispachProps, ownProps) => {
-//   return Object.assign({}, ownProps, stateProps, dispachProps, {
-//     submit: (e) => {
-//       e.stopPropagation();
-//       console.log("OWN PROPS", ownProps);
-//       dispachProps.doTheSubmitDance({
-//         name:ownProps.addItemForm.name,
-//         ring:ownProps.addItemForm.ring,
-//         section:ownProps.addItemForm.section,
-//         notes:ownProps.addItemForm.notes,
-//       });
-//     }
-//   })
-// }
-
-export default connect(matchStateToProps, matchDispachToProps)(AddItem);
+export default connect(matchStateToProps, matchDispachToProps)(EditItem);
