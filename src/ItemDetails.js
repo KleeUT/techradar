@@ -15,7 +15,7 @@ margin:0.5em;
 width:100%;
 `;
 
-const EditItem = ({
+const ItemDetails = ({
   onSubmit,
   onCancel,
   onNameChange,
@@ -32,9 +32,7 @@ const EditItem = ({
   }
   return (
     <div style={{ width: "100%" }}>
-      <h1>Edit Item</h1>
-      {/* <form onSubmit={onSubmit}> */}
-        <StaticText text={name} label={"Name: "} />
+      <h1>{name}</h1>
         <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
         <TextInput
           onChange={onSectionChange}
@@ -67,11 +65,7 @@ const TextInput = ({ onChange, text, label }) => {
   );
 };
 
-const StaticText = ({text, label}) => {
-  return <div>{label} {text}</div>
-} 
-
-EditItem.propTypes = {
+ItemDetails.propTypes = {
   onSubmit: propTypes.func,
   onCancel: propTypes.func,
   onRingChange: propTypes.func,
@@ -95,7 +89,7 @@ const matchDispachToProps = (dispach, ownProps) => {
       dispach(FormActions.UpdateNotes(e.target.value));
     },
     onSubmit: (e) =>{
-      dispach(RadarActions.UpdateRadarItem(e))
+      dispach(RadarActions.UpdateRadarItem(e, Date.now()))
       dispach(push(""))      
     },
     onCancel: () => {
@@ -113,4 +107,4 @@ const matchStateToProps = state => {
   };
 };
 
-export default connect(matchStateToProps, matchDispachToProps)(EditItem);
+export default connect(matchStateToProps, matchDispachToProps)(ItemDetails);

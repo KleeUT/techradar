@@ -16,7 +16,7 @@ import "./App.css";
 
 import RadarDisplay from "./RadarDisplay";
 import AddItem from "./AddItem";
-import EditItem from "./EditItem";
+import ItemDetails from "./ItemDetails";
 
 import RadarItemReducer from "./reducers/RadarItemReducer";
 import LoggingReducer from "./reducers/LoggingReducer";
@@ -71,7 +71,7 @@ class App extends Component {
             <ContentContainer>
               <Route exact path="/" component={RadarDisplay} /> 
               <Route path="/add-item" component = {AddItem} />
-              <Route path="/edit-item" component = {EditItem} />
+              <Route path="/item-details" component = {ItemDetails} />
             </ContentContainer>
           </BackgroundContainer>
         </ConnectedRouter>

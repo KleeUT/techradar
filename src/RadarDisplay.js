@@ -49,7 +49,7 @@ const matchDispachToProps = dispach => {
     addItem: () => dispach(push('/add-item')),
     editItem: (item) => {
       dispach(Actions.EditItem(item));
-      dispach(push('/edit-item'));
+      dispach(push('/item-details'));
     }
   };
 };

@@ -1,14 +1,16 @@
-export const AddRadarItem = (item) => {
+export const AddRadarItem = (item, timestamp) => {
     return {
         type: "ADD_RADAR_ITEM",
-        value: item
+        value: item,
+        timestamp: timestamp
     }
 } 
 
-export const UpdateRadarItem = (item) => {
+export const UpdateRadarItem = (item, timestamp) => {
     return {
         type: "UPDATE_RADAR_ITEM",
-        value: item
+        value: item,
+        timestamp: timestamp
     }
 }
 
