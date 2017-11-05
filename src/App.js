@@ -22,6 +22,7 @@ import RadarItemReducer from "./reducers/RadarItemReducer";
 import LoggingReducer from "./reducers/LoggingReducer";
 import AddItemFormReducer from './reducers/AddItemFormReducer';
 import EditItemFormReducer from './reducers/EditItemFormReducer';
+import HistoryReducer from './reducers/HistoryReducer';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -34,7 +35,8 @@ const store = createStore(
       addItemForm: AddItemFormReducer,
       editItemForm: EditItemFormReducer,
       radarItem: RadarItemReducer,
-      router: routerReducer
+      router: routerReducer,
+      history: HistoryReducer
     }),
     applyMiddleware(middleware)
 );
@@ -55,6 +57,7 @@ class App extends Component {
     left:0;
     position:absolute;
     background-color:rgb(1, 61, 17);
+    font-family: 'Roboto', sans-serif;
     `;
     const ContentContainer = styled.div`
     margin:auto;

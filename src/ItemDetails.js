@@ -6,7 +6,7 @@ import styled from "styled-components";
 import * as FormActions from "./actions/EditItemFormActions";
 import * as RadarActions from "./actions/Actions";
 import Button from "./components/Button";
-
+import SectionSelector from './components/SectionSelector';
 const TextBox = styled.textarea`
 display:block;
 font-size:18px;
@@ -25,23 +25,37 @@ const ItemDetails = ({
   name,
   ring,
   section,
-  notes
+  notes,
+  itemHistory
 }) => {
   const handleSubmit = () => {
-    onSubmit({name, ring, section, notes});
-  }
+    onSubmit({ name, ring, section, notes });
+  };
   return (
     <div style={{ width: "100%" }}>
       <h1>{name}</h1>
-        <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
-        <TextInput
-          onChange={onSectionChange}
-          text={section}
-          label={"Section: "}
-        />
-        <TextBox onChange={onNotesChange} value={notes} />
-        <Button onClick={handleSubmit}>Ok</Button>
-        <Button onClick={onCancel}>Cancel</Button>
+      <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
+      <SectionSelector onChange={onSectionChange} value={section}/>
+      <TextInput
+        onChange={onSectionChange}
+        text={section}
+        label={"Section: "}
+      />
+      <TextBox onChange={onNotesChange} value={notes} />
+      <Button onClick={handleSubmit}>Ok</Button>
+      <Button onClick={onCancel}>Cancel</Button>
+      <hr />
+      {itemHistory.reduce((previous, current, index, array) => {
+        if(index === 0){
+          previous.push({timestamp:current.timestamp, ring:current.ring})          
+        }else if (current.ring !== array[index-1].ring){
+          previous.push({timestamp:current.timestamp, ring:current.ring})                    
+        }
+
+        return previous;
+      },[]).map(i => {
+        return <div>{JSON.stringify(i)}</div>;
+      })}
       {/* </form> */}
     </div>
   );
@@ -55,7 +69,6 @@ width:100%;`;
 const TextInput = ({ onChange, text, label }) => {
   const Label = styled.label`
   `;
-
 
   return (
     <div>
@@ -74,7 +87,8 @@ ItemDetails.propTypes = {
   name: propTypes.string,
   ring: propTypes.string,
   section: propTypes.string,
-  notes: propTypes.string
+  notes: propTypes.string,
+  itemHistory: propTypes.arrayOf(propTypes.object)
 };
 
 const matchDispachToProps = (dispach, ownProps) => {
@@ -88,13 +102,13 @@ const matchDispachToProps = (dispach, ownProps) => {
     onNotesChange: e => {
       dispach(FormActions.UpdateNotes(e.target.value));
     },
-    onSubmit: (e) =>{
-      dispach(RadarActions.UpdateRadarItem(e, Date.now()))
-      dispach(push(""))      
+    onSubmit: e => {
+      dispach(RadarActions.UpdateRadarItem(e, Date.now()));
+      dispach(push(""));
     },
     onCancel: () => {
-      dispach(FormActions.ClearForm)
-      dispach(push(""))
+      dispach(FormActions.ClearForm);
+      dispach(push(""));
     }
   };
 };
@@ -103,7 +117,8 @@ const matchStateToProps = state => {
     name: state.editItemForm.name,
     ring: state.editItemForm.ring,
     section: state.editItemForm.section,
-    notes: state.editItemForm.notes
+    notes: state.editItemForm.notes,
+    itemHistory: state.history[state.editItemForm.name] || []
   };
 };
 

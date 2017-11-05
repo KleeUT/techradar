@@ -6,7 +6,8 @@ import styled from "styled-components";
 import * as FormActions from "./actions/AddItemFormActions";
 import * as RadarActions from "./actions/Actions";
 import Button from "./components/Button";
-
+import SectionSelection from './components/SectionSelector'
+import TextInput from './components/TextInput'
 const TextBox = styled.textarea`
 display:block;
 font-size:18px;
@@ -36,10 +37,10 @@ const AddItem = ({
       {/* <form onSubmit={onSubmit}> */}
         <TextInput onChange={onNameChange} text={name} label={"Name: "} />
         <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
-        <TextInput
+        <SectionSelection
           onChange={onSectionChange}
-          text={section}
-          label={"Section: "}
+          value={section}
+          selectionOptions={["tools", "processes", "honeycomb"]}
         />
         <TextBox onChange={onNotesChange} value={notes} />
         <Button onClick={handleSubmit}>Ok</Button>
@@ -48,24 +49,24 @@ const AddItem = ({
     </div>
   );
 };
-const Input = styled.input`
-display:block;
-font-size:18px;
-padding:0.5em;
-margin:0.5em;
-width:100%;`;
-const TextInput = ({ onChange, text, label }) => {
-  const Label = styled.label`
-  `;
+// const Input = styled.input`
+// display:block;
+// font-size:18px;
+// padding:0.5em;
+// margin:0.5em;
+// width:100%;`;
+// const TextInput = ({ onChange, text, label }) => {
+//   const Label = styled.label`
+//   `;
 
 
-  return (
-    <div>
-      <Label>{label}</Label>
-      <Input type="text" onChange={onChange} value={text} />
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <Label>{label}</Label>
+//       <Input type="text" onChange={onChange} value={text} />
+//     </div>
+//   );
+// };
 
 AddItem.propTypes = {
   onSubmit: propTypes.func,
@@ -89,7 +90,8 @@ const matchDispachToProps = (dispach, ownProps) => {
       dispach(FormActions.UpdateRing(e.target.value));
     },
     onSectionChange: e => {
-      dispach(FormActions.UpdateSection(e.target.value));
+      console.log(`bubble ${e}`);
+      dispach(FormActions.UpdateSection(e));
     },
     onNotesChange: e => {
       dispach(FormActions.UpdateNotes(e.target.value));
