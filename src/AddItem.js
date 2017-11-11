@@ -94,6 +94,7 @@ const matchDispachToProps = (dispach, ownProps) => {
     onSubmit: (e) =>{
       dispach(RadarActions.AddRadarItem(e, Date.now()))
       dispach(push(""))      
+      dispach(FormActions.ClearForm)
     },
     onCancel: () => {
       dispach(FormActions.ClearForm)
