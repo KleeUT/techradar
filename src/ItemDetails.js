@@ -6,7 +6,8 @@ import styled from "styled-components";
 import * as FormActions from "./actions/EditItemFormActions";
 import * as RadarActions from "./actions/Actions";
 import Button from "./components/Button";
-import SectionSelector from './components/SectionSelector';
+import ComboBox from './components/ComboBox';
+import TextInput from './components/TextInput';
 const TextBox = styled.textarea`
 display:block;
 font-size:18px;
@@ -35,12 +36,13 @@ const ItemDetails = ({
     <div style={{ width: "100%" }}>
       <h1>{name}</h1>
       <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
-      <SectionSelector onChange={onSectionChange} value={section}/>
-      <TextInput
-        onChange={onSectionChange}
-        text={section}
-        label={"Section: "}
-      />
+      <ComboBox
+          onChange={onSectionChange}
+          value={section}
+          label="Section: "
+          selectionOptions={["tools", "processes", "honeycomb"]}
+        />
+
       <TextBox onChange={onNotesChange} value={notes} />
       <Button onClick={handleSubmit}>Ok</Button>
       <Button onClick={onCancel}>Cancel</Button>
@@ -57,23 +59,6 @@ const ItemDetails = ({
         return <div>{JSON.stringify(i)}</div>;
       })}
       {/* </form> */}
-    </div>
-  );
-};
-const Input = styled.input`
-display:block;
-font-size:18px;
-pEditing:0.5em;
-margin:0.5em;
-width:100%;`;
-const TextInput = ({ onChange, text, label }) => {
-  const Label = styled.label`
-  `;
-
-  return (
-    <div>
-      <Label>{label}</Label>
-      <Input type="text" onChange={onChange} value={text} />
     </div>
   );
 };
@@ -97,7 +82,9 @@ const matchDispachToProps = (dispach, ownProps) => {
       dispach(FormActions.UpdateRing(e.target.value));
     },
     onSectionChange: e => {
-      dispach(FormActions.UpdateSection(e.target.value));
+      console.log(`bubble ${e}`);
+      
+      dispach(FormActions.UpdateSection(e));
     },
     onNotesChange: e => {
       dispach(FormActions.UpdateNotes(e.target.value));

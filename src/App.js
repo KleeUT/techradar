@@ -41,31 +41,35 @@ const store = createStore(
     applyMiddleware(middleware)
 );
 
+
+const BackgroundContainer = styled.div`
+background-image:url('radar.svg');
+background-size:cover;
+background-position:center;
+height:100%;
+width:100%;
+top:0;
+orverflow:auto;
+left:0;
+position:absolute;
+background-color:rgb(1, 61, 17);
+font-family: 'Roboto', sans-serif;
+`;
+const ContentContainer = styled.div`
+margin:auto;
+width:75%;
+background-color:rgba(255,255,255,0.5);
+position:relative;
+font-size:18px;
+padding:2.5%;
+`;
+
 class App extends Component {
   componentDidCatch(error, info) {
     console.log(error, info);
   }
   render() {
-    const BackgroundContainer = styled.div`
-    background-image:url('radar.svg');
-    background-size:cover;
-    background-position:center;
-    height:100%;
-    width:100%;
-    top:0;
-    orverflow:auto;
-    left:0;
-    position:absolute;
-    background-color:rgb(1, 61, 17);
-    font-family: 'Roboto', sans-serif;
-    `;
-    const ContentContainer = styled.div`
-    margin:auto;
-    width:75%;
-    background-color:rgba(255,255,255,0.5);
-    position:relative;
-    font-size:18px;
-    `;
+
 
     return (
       <Provider store={store}>

@@ -6,14 +6,15 @@ import styled from "styled-components";
 import * as FormActions from "./actions/AddItemFormActions";
 import * as RadarActions from "./actions/Actions";
 import Button from "./components/Button";
-import SectionSelection from './components/SectionSelector'
+import ComboBox from './components/ComboBox'
 import TextInput from './components/TextInput'
 const TextBox = styled.textarea`
-display:block;
+/* display:block; */
 font-size:18px;
-padding:0.5em;
-margin:0.5em;
+/* padding:0.5em; */
+/* margin:0.5em 0.0em; */
 width:100%;
+resize:none;
 `;
 
 const AddItem = ({
@@ -24,9 +25,14 @@ const AddItem = ({
   onSectionChange,
   onNotesChange,
   name,
+  nameValid,
   ring,
+  ringValid,
   section,
-  notes
+  sectionValid,
+  notes, 
+  sectionOptions,
+  existingNames
 }) => {
   const handleSubmit = () => {
     onSubmit({name, ring, section, notes});
@@ -35,38 +41,23 @@ const AddItem = ({
     <div style={{ width: "100%" }}>
       <h1>Add Item</h1>
       {/* <form onSubmit={onSubmit}> */}
-        <TextInput onChange={onNameChange} text={name} label={"Name: "} />
-        <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
-        <SectionSelection
+        <TextInput onChange={onNameChange} text={name} label="Name: " valid={nameValid} />
+        <TextInput onChange={onRingChange} text={ring} label="Ring: " valid={() => !!ring }/>
+        <ComboBox
           onChange={onSectionChange}
           value={section}
-          selectionOptions={["tools", "processes", "honeycomb"]}
+          label="Section: "
+          selectionOptions={sectionOptions}
+          valid={sectionValid}
         />
+        Notes
         <TextBox onChange={onNotesChange} value={notes} />
-        <Button onClick={handleSubmit}>Ok</Button>
+        <Button onClick={handleSubmit} canClick={nameValid}>Ok</Button>
         <Button onClick={onCancel}>Cancel</Button>
       {/* </form> */}
     </div>
   );
 };
-// const Input = styled.input`
-// display:block;
-// font-size:18px;
-// padding:0.5em;
-// margin:0.5em;
-// width:100%;`;
-// const TextInput = ({ onChange, text, label }) => {
-//   const Label = styled.label`
-//   `;
-
-
-//   return (
-//     <div>
-//       <Label>{label}</Label>
-//       <Input type="text" onChange={onChange} value={text} />
-//     </div>
-//   );
-// };
 
 AddItem.propTypes = {
   onSubmit: propTypes.func,
@@ -76,9 +67,14 @@ AddItem.propTypes = {
   onSectionChange: propTypes.func,
   onNotesChange: propTypes.func,
   name: propTypes.string,
+  nameValid: propTypes.bool,
   ring: propTypes.string,
+  ringValid: propTypes.bool,
   section: propTypes.string,
-  notes: propTypes.string
+  sectionValid: propTypes.bool,
+  notes: propTypes.string,
+  sectionOptions: propTypes.arrayOf(propTypes.string),
+  existingNames: propTypes.arrayOf(propTypes.string)
 };
 
 const matchDispachToProps = (dispach, ownProps) => {
@@ -90,7 +86,6 @@ const matchDispachToProps = (dispach, ownProps) => {
       dispach(FormActions.UpdateRing(e.target.value));
     },
     onSectionChange: e => {
-      console.log(`bubble ${e}`);
       dispach(FormActions.UpdateSection(e));
     },
     onNotesChange: e => {
@@ -109,25 +104,18 @@ const matchDispachToProps = (dispach, ownProps) => {
 const matchStateToProps = state => {
   return {
     name: state.addItemForm.name,
+    nameValid: !!state.addItemForm.name && !Object.keys(state.radarItem).includes(state.addItemForm.name),
     ring: state.addItemForm.ring,
+    ringValid: !!state.addItemForm.ring,
     section: state.addItemForm.section,
-    notes: state.addItemForm.notes
+    sectionValid: !!state.addItemForm.section,
+    notes: state.addItemForm.notes,
+    sectionOptions: Object.keys(state.radarItem).map(key => {
+      return state.radarItem[key].section;
+    }).reduce((x, y) => x.includes(y) ? x : [...x, y], []),
+    existingNames: Object.keys(state.radarItem)
   };
 };
 
-// const mergeProps = (stateProps, dispachProps, ownProps) => {
-//   return Object.assign({}, ownProps, stateProps, dispachProps, {
-//     submit: (e) => {
-//       e.stopPropagation();
-//       console.log("OWN PROPS", ownProps);
-//       dispachProps.doTheSubmitDance({
-//         name:ownProps.addItemForm.name,
-//         ring:ownProps.addItemForm.ring,
-//         section:ownProps.addItemForm.section,
-//         notes:ownProps.addItemForm.notes,
-//       });
-//     }
-//   })
-// }
 
 export default connect(matchStateToProps, matchDispachToProps)(AddItem);

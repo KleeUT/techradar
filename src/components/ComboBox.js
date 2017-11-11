@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TextInput from './TextInput'
+import TextInput from "./TextInput";
 const Label = styled.label``;
 
 const Option = styled.div`
@@ -12,16 +12,19 @@ background-color:#fff;
 :hover{
   background-color:red;
 }`;
+const OptionDiv = styled.div`
+  display: ${props => props.display ? "block" : "none"}
+`;
 
-class SectionSelection extends React.Component {
+class ComboBox extends React.Component {
   constructor(props) {
     super(props);
     this.value = props.value;
     this.onChange = props.onChange;
     this.selectionOptions = props.selectionOptions;
-    console.log(`constructor ${props} ${this.value}`);
     this.inputValue = props.value;
-    this.state={};
+    this.label = props.label;
+    this.state = { inputValue: this.inputValue };
   }
   pickSelection(option) {
     return e => {
@@ -32,12 +35,10 @@ class SectionSelection extends React.Component {
     };
   }
   onFocus(e) {
-    console.log(e.target.innerHTML);
     this.setState({ focused: true });
     this.setState({ displayOptions: true });
   }
   lostFocus(e) {
-    console.log("out");
     this.setState({ focused: false });
     if (this.state.mouseOver) {
       return;
@@ -59,9 +60,6 @@ class SectionSelection extends React.Component {
   render() {
     console.log(`rendering ${JSON.stringify(this.state)}`);
     const state = this.state || {};
-    const OptionDiv = styled.div`
-      display: ${state.displayOptions || state.mouseOver ? "block" : "none"}
-     `;
     return (
       <div
         onFocus={this.onFocus.bind(this)}
@@ -69,15 +67,18 @@ class SectionSelection extends React.Component {
       >
         {/* <Label>Section:</Label> */}
         <TextInput
-          label="Section:"
+          label={this.label}
           text={state.inputValue}
           onChange={this.inputChanged.bind(this)}
         />
-        <OptionDiv>
+        <OptionDiv display={state.displayOptions || state.mouseover}>
           {this.selectionOptions.map(option => {
             return (
-              <Option key={option} onClick={this.pickSelection(option).bind(this)}>
-                <a >{option}</a>
+              <Option
+                key={option}
+                onClick={this.pickSelection(option).bind(this)}
+              >
+                <a>{option}</a>
               </Option>
             );
           })}
@@ -87,5 +88,4 @@ class SectionSelection extends React.Component {
   }
 }
 
-
-export default SectionSelection;
+export default ComboBox;

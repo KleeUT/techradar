@@ -33,7 +33,7 @@ const RadarDisplay = ({ radarItems, addItem, editItem }) => {
           ))}
         </tbody>
       </table>
-      <Button onClick={addItem}>Add Item</Button>
+      <Button onClick={addItem} canClick={true}>Add Item</Button>
     </div>
   );
 };
