@@ -10,7 +10,7 @@ padding:0.5em;
 width:100%;
 background-color:#fff;
 :hover{
-  background-color:red;
+  background-color:#dfd;
 }`;
 const OptionDiv = styled.div`
   display: ${props => props.display ? "block" : "none"}

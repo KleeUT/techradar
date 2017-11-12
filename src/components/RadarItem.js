@@ -11,7 +11,7 @@ const Component = ({ name, ring, section, notes, edit }) => {
       <TextDisplay>{section}</TextDisplay>
       <TextDisplay>{ring}</TextDisplay>
       <TextDisplay>{notes}</TextDisplay>
-      <TextDisplay><Button onClick={edit}>Edit</Button></TextDisplay>
+      <TextDisplay><Button onClick={edit}>...</Button></TextDisplay>
     </tr>
   );
 };
