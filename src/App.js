@@ -43,22 +43,19 @@ const store = createStore(
 
 
 const BackgroundContainer = styled.div`
-background-image:url('radar.svg');
-background-size:cover;
-background-position:center;
+background-color: #fcfdfc;
+background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23b5dfb8' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 height:100%;
 width:100%;
 top:0;
 orverflow:auto;
 left:0;
 position:absolute;
-background-color:rgb(1, 61, 17);
 font-family: 'Roboto', sans-serif;
 `;
 const ContentContainer = styled.div`
 margin:auto;
 width:75%;
-background-color:rgba(255,255,255,0.5);
 position:relative;
 font-size:18px;
 padding:2.5%;

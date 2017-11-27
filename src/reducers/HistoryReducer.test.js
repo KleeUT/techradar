@@ -31,7 +31,7 @@ describe("History Reducer: ", () => {
     }); // I think i need time here how do I do that testabley
   });
 
-  it("Shoul add history entry after an update", () => {
+  it("Should add history entry after an update", () => {
     const timestamp = Date.now();
     const timestamp2 = Date.now();
     const previousState = Object.freeze({

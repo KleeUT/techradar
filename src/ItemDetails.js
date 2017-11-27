@@ -47,21 +47,35 @@ const ItemDetails = ({
       <Button onClick={handleSubmit}>Ok</Button>
       <Button onClick={onCancel}>Cancel</Button>
       <hr />
-      {itemHistory.reduce((previous, current, index, array) => {
-        if(index === 0){
-          previous.push({timestamp:current.timestamp, ring:current.ring})          
-        }else if (current.ring !== array[index-1].ring){
-          previous.push({timestamp:current.timestamp, ring:current.ring})                    
-        }
-
-        return previous;
-      },[]).map(i => {
-        return <div>{JSON.stringify(i)}</div>;
-      })}
+      <ItemHistory itemHistory={itemHistory} />
       {/* </form> */}
     </div>
   );
 };
+
+const ItemHistory = ({itemHistory}) => {
+  return <div>
+      {itemHistory.reduce((previous, current, index, array) => {
+            if(index === 0){
+              previous.push({timestamp:current.timestamp, ring:current.item.ring})          
+            }else if (current.item.ring !== array[index-1].item.ring){
+              previous.push({timestamp:current.timestamp, ring:current.item.ring})                    
+            }
+
+            return previous;
+          },[]).map(i => {
+            return <HistoryItem timestamp={i.timestamp} element={i.ring} key={i.timestamp}/>;
+          })
+      }
+    </div>
+};
+
+
+const HistoryItem = ({timestamp, element}) => {
+  return <div> 
+      {timestamp} {element}
+    </div>
+}
 
 ItemDetails.propTypes = {
   onSubmit: propTypes.func,
