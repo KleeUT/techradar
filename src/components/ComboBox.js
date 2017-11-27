@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import TextInput from "./TextInput";
+import propTypes from 'prop-types';
 const Label = styled.label``;
 
 const Option = styled.div`
@@ -10,11 +11,16 @@ padding:0.5em;
 width:100%;
 background-color:#fff;
 :hover{
-  background-color:#dfd;
+  background-color:#f1f9f4;
 }`;
+
 const OptionDiv = styled.div`
-  display: ${props => props.display ? "block" : "none"}
+  display: ${props => props.displayDiv ? "block" : "none"}
 `;
+
+OptionDiv.propTypes = {
+  displayDiv: propTypes.bool
+}
 
 class ComboBox extends React.Component {
   constructor(props) {
@@ -71,7 +77,7 @@ class ComboBox extends React.Component {
           text={state.inputValue}
           onChange={this.inputChanged.bind(this)}
         />
-        <OptionDiv display={state.displayOptions || state.mouseover}>
+        <OptionDiv displayDiv={state.displayOptions || state.mouseover}>
           {this.selectionOptions.map(option => {
             return (
               <Option
