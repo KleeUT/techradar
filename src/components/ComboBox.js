@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import TextInput from "./TextInput";
 import propTypes from 'prop-types';
-const Label = styled.label``;
 
 const Option = styled.div`
 display:block;
@@ -30,7 +29,7 @@ class ComboBox extends React.Component {
     this.selectionOptions = props.selectionOptions;
     this.inputValue = props.value;
     this.label = props.label;
-    this.state = { inputValue: this.inputValue };
+    this.state = { inputValue: this.inputValue, validate: props.valid };
   }
   pickSelection(option) {
     return e => {
@@ -71,11 +70,11 @@ class ComboBox extends React.Component {
         onFocus={this.onFocus.bind(this)}
         onMouseLeave={this.lostFocus.bind(this)}
       >
-        {/* <Label>Section:</Label> */}
         <TextInput
           label={this.label}
           text={state.inputValue}
           onChange={this.inputChanged.bind(this)}
+          validate={state.validate}
         />
         <OptionDiv displayDiv={state.displayOptions || state.mouseover}>
           {this.selectionOptions.map(option => {
