@@ -45,12 +45,6 @@ const AddItem = ({
         label="Name: "
         valid={nameValid}
       />
-      {/* <TextInput
-        onChange={onRingChange}
-        text={ring}
-        label="Ring: "
-        valid={() => !!ring}
-      /> */}
       <RingSelector
         onChange={onRingChange}
         value={ring}

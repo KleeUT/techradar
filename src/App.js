@@ -44,11 +44,14 @@ const store = createStore(
 const ContentContainer = styled.div`
 margin:auto;
 width:960px;
-position:relative;
 font-size:18px;
 padding:10px;
 background-color:#fefffe;
-height:100%;
+min-height:100%;
+border: 2px solid #c5d4c5;
+@media (max-width: 960px) {
+		width:100%;
+	}
 `;
 
 class App extends Component {
