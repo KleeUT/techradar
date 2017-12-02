@@ -10,7 +10,7 @@ import propTypes from "prop-types";
 const ListDisplay = ({ radarItems, addItem, editItem, populateState }) => {
   return (
     <div>
-      <PrimaryHeading>Radar Display</PrimaryHeading>
+      <PrimaryHeading>List Display</PrimaryHeading>
       <table>
         <thead>
           <tr>

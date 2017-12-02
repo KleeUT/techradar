@@ -15,8 +15,6 @@ const Label = styled.label`
 `;
 
 const TextInput = ({ onChange, text, label, validate = () => true }) => {
-  console.log(`validating ${text} in TextInput`);
-  
   let valid = validate(text);
 
   return (

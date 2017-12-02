@@ -15,6 +15,7 @@ import createHistory from 'history/createBrowserHistory';
 import "./App.css";
 
 import RadarDisplay from "./RadarDisplay";
+import ListDisplay from "./ListDisplay";
 import AddItem from "./AddItem";
 import ItemDetails from "./ItemDetails";
 
@@ -66,6 +67,7 @@ class App extends Component {
         <ConnectedRouter history={history}>
             <ContentContainer>
               <Route exact path="/" component={RadarDisplay} /> 
+              <Route exact path="/list" component={ListDisplay} /> 
               <Route path="/add-item" component = {AddItem} />
               <Route path="/item-details" component = {ItemDetails} />
             </ContentContainer>

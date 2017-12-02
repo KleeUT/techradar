@@ -63,7 +63,6 @@ class ComboBox extends React.Component {
     // this.onChange(e.target.value)
   }
   render() {
-    console.log(`rendering ${JSON.stringify(this.state)}`);
     const state = this.state || {};
     return (
       <div

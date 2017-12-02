@@ -3,7 +3,7 @@ import ComboBox from "./ComboBox";
 
 const standardOptions = ["Adopt", "Trial", "Assess", "Hold"];
 export default props => {
-  var { selectionOptions, valid, ...other } = props;
+  let { selectionOptions, valid, ...other } = props;
   selectionOptions = standardOptions;
 
   const validate = (text) => validateText(text);
