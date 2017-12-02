@@ -16,42 +16,94 @@ margin:0.5em;
 width:100%;
 `;
 
-const ItemDetails = ({
-  onSubmit,
-  onCancel,
-  onNameChange,
-  onRingChange,
-  onSectionChange,
-  onNotesChange,
-  name,
-  ring,
-  section,
-  notes,
-  itemHistory
-}) => {
-  const handleSubmit = () => {
-    onSubmit({ name, ring, section, notes });
-  };
-  return (
-    <div style={{ width: "100%" }}>
-      <h1>{name}</h1>
-      <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
-      <ComboBox
-          onChange={onSectionChange}
-          value={section}
-          label="Section: "
-          selectionOptions={["tools", "processes", "honeycomb"]}
-        />
+class ItemDetails extends React.Component{
+  constructor(props){
+    super(props)    
+  }
+  componentDidMount(){
+    if(this.props.name === ''){
+      this.props.onCancel();
+    }
+  }
+  componentWillReceiveProps(){
+    // console.log()
+  }
+  shouldComponentUpdate(){}
+  componentWillUpdate(){}
+  render(){
+    const handleSubmit = () => {
+      onSubmit({ name, ring, section, notes });
+    };
+    let {
+        onSubmit,
+        onCancel,
+        onNameChange,
+        onRingChange,
+        onSectionChange,
+        onNotesChange,
+        name,
+        ring,
+        section,
+        notes,
+        itemHistory
+    } = this.props;
+    return (
+      <div style={{ width: "100%" }}>
+        <h1>{name}</h1>
+        <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
+        <ComboBox
+            onChange={onSectionChange}
+            value={section}
+            label="Section: "
+            selectionOptions={["tools", "processes", "honeycomb"]}
+          />
+  
+        <TextBox onChange={onNotesChange} value={notes} />
+        <Button onClick={handleSubmit}>Ok</Button>
+        <Button onClick={onCancel}>Cancel</Button>
+        <hr />
+        <ItemHistory itemHistory={itemHistory} />
+      </div>
+    );
+  }
+  componentDidUpdate(){}
 
-      <TextBox onChange={onNotesChange} value={notes} />
-      <Button onClick={handleSubmit}>Ok</Button>
-      <Button onClick={onCancel}>Cancel</Button>
-      <hr />
-      <ItemHistory itemHistory={itemHistory} />
-      {/* </form> */}
-    </div>
-  );
-};
+}
+// const ItemDetails = ({
+//   onSubmit,
+//   onCancel,
+//   onNameChange,
+//   onRingChange,
+//   onSectionChange,
+//   onNotesChange,
+//   name,
+//   ring,
+//   section,
+//   notes,
+//   itemHistory
+// }) => {
+//   const handleSubmit = () => {
+//     onSubmit({ name, ring, section, notes });
+//   };
+//   return (
+//     <div style={{ width: "100%" }}>
+//       <h1>{name}</h1>
+//       <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
+//       <ComboBox
+//           onChange={onSectionChange}
+//           value={section}
+//           label="Section: "
+//           selectionOptions={["tools", "processes", "honeycomb"]}
+//         />
+
+//       <TextBox onChange={onNotesChange} value={notes} />
+//       <Button onClick={handleSubmit}>Ok</Button>
+//       <Button onClick={onCancel}>Cancel</Button>
+//       <hr />
+//       <ItemHistory itemHistory={itemHistory} />
+//     </div>
+//   );
+// };
 
 const ItemHistory = ({itemHistory}) => {
   return <div>
