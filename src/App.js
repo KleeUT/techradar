@@ -46,7 +46,8 @@ const ContentContainer = styled.div`
 margin:auto;
 width:960px;
 font-size:18px;
-padding:10px;
+padding:0 1rem 0 1rem;
+padding-top:0;
 background-color:#fefffe;
 min-height:100%;
 border: 2px solid #c5d4c5;
@@ -65,6 +66,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
+
             <ContentContainer>
               <Route exact path="/" component={RadarDisplay} /> 
               <Route exact path="/list" component={ListDisplay} /> 

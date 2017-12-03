@@ -6,10 +6,12 @@ import RadarItem from "./components/RadarItem";
 import Button from "./components/Button";
 import { push } from "react-router-redux";
 import propTypes from "prop-types";
+import RadarNav from './RadarNav';
 
 const ListDisplay = ({ radarItems, addItem, editItem, populateState }) => {
   return (
     <div>
+      <RadarNav />
       <PrimaryHeading>List Display</PrimaryHeading>
       <table>
         <thead>

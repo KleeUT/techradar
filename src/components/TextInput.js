@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const Input = styled.input`
 display: block;
 width: 100%;
-padding: 0.5em;
+padding: 0.5rem;
 font-size:18px;
 margin: auto;
 box-sizing: border-box;

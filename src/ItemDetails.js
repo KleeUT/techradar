@@ -11,8 +11,8 @@ import TextInput from './components/TextInput';
 const TextBox = styled.textarea`
 display:block;
 font-size:18px;
-pEditing:0.5em;
-margin:0.5em;
+pEditing:0.5rem;
+margin:0.5rem;
 width:100%;
 `;
 

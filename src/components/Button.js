@@ -3,15 +3,15 @@ import styled from "styled-components";
 import propTypes from "prop-types";
 
 const Button = styled.button`
-        padding:0.75em;
+        padding:0.75rem;
         background-color: ${props => props.canClick ? '#2A2' : '#464' };
         color: ${props => props.canClick ? '#fff' : '#999' };
         border:0;
-        margin:0.5em;
+        margin:0.5rem;
         border-radius: 3px;
         font-family: 'Roboto', sans-serif;
         font-size:16px;
-        min-width:5em;
+        min-width:5rem;
         cursor: ${props => props.canClick ? 'pointer' : 'not-allowed'};
     `;
 const Component = ({ children, onClick, canClick = true }) => {

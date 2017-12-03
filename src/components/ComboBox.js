@@ -6,7 +6,7 @@ import propTypes from 'prop-types';
 const Option = styled.div`
 display:block;
 font-size:18px;
-padding:0.5em;
+padding:0.5rem;
 width:100%;
 background-color:#fff;
 :hover{
