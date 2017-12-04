@@ -10,7 +10,7 @@ import {
 
 import { Provider } from "react-redux";
 import { Route } from "react-router";
-import createHistory from 'history/createBrowserHistory';
+import createHistory from "history/createBrowserHistory";
 
 import "./App.css";
 
@@ -18,28 +18,28 @@ import RadarDisplay from "./RadarDisplay";
 import ListDisplay from "./ListDisplay";
 import AddItem from "./AddItem";
 import ItemDetails from "./ItemDetails";
+import Dashboard from './Dashboard'
+import NavBarWrapper from "./NavBarWrapper";
 
 import RadarItemReducer from "./reducers/RadarItemReducer";
 import LoggingReducer from "./reducers/LoggingReducer";
-import AddItemFormReducer from './reducers/AddItemFormReducer';
-import EditItemFormReducer from './reducers/EditItemFormReducer';
-import HistoryReducer from './reducers/HistoryReducer';
+import AddItemFormReducer from "./reducers/AddItemFormReducer";
+import EditItemFormReducer from "./reducers/EditItemFormReducer";
+import HistoryReducer from "./reducers/HistoryReducer";
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
 
-
 const store = createStore(
-  combineReducers(
-    {
-      LoggingReducer,
-      addItemForm: AddItemFormReducer,
-      editItemForm: EditItemFormReducer,
-      radarItem: RadarItemReducer,
-      router: routerReducer,
-      history: HistoryReducer
-    }),
-    applyMiddleware(middleware)
+  combineReducers({
+    LoggingReducer,
+    addItemForm: AddItemFormReducer,
+    editItemForm: EditItemFormReducer,
+    radarItem: RadarItemReducer,
+    router: routerReducer,
+    history: HistoryReducer
+  }),
+  applyMiddleware(middleware)
 );
 
 const ContentContainer = styled.div`
@@ -61,18 +61,19 @@ class App extends Component {
     console.log(error, info);
   }
   render() {
-
-
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
 
-            <ContentContainer>
-              <Route exact path="/" component={RadarDisplay} /> 
-              <Route exact path="/list" component={ListDisplay} /> 
-              <Route path="/add-item" component = {AddItem} />
-              <Route path="/item-details" component = {ItemDetails} />
-            </ContentContainer>
+          <ContentContainer>
+            <NavBarWrapper>
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/radar" component={RadarDisplay} />
+              <Route exact path="/list" component={ListDisplay} />
+              <Route path="/add-item" component={AddItem} />
+              <Route path="/item-details" component={ItemDetails} />
+            </NavBarWrapper>
+          </ContentContainer>
         </ConnectedRouter>
       </Provider>
     );

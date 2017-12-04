@@ -4,7 +4,6 @@ import { PrimaryHeading } from "./components/Headings";
 import * as Actions from "./actions/Actions";
 import RadarItem from "./components/RadarItem";
 import Button from "./components/Button";
-import RadarNav from './RadarNav';
 
 import { push } from "react-router-redux";
 import propTypes from "prop-types";
@@ -12,7 +11,6 @@ import propTypes from "prop-types";
 const ListDisplay = ({ radarItems, addItem, editItem, populateState }) => {
   return (
     <div>
-      <RadarNav />      
       <PrimaryHeading>Radar Display</PrimaryHeading>
       <table>
         <thead>
@@ -49,7 +47,6 @@ ListDisplay.propTypes = {
 
 const matchDispachToProps = dispach => {
   return {
-    // addItem: () => dispach(Actions.AddRadarItem({name:`Test Item ${Math.random()}`, section:'testing'}))
     addItem: () => dispach(push('/add-item')),
     editItem: (item) => {
       dispach(Actions.EditItem(item));
