@@ -1,6 +1,8 @@
 import RadarItemReducer from "./RadarItemReducer.js";
 import * as Actions from "../actions/Actions.js";
 
+const someRadarId = 'Some Radar id';
+
 describe("Radar Item Reducer: ", () => {
   it("should ignore actions it doesnt know about", () => {
     const state = RadarItemReducer(undefined, {
@@ -12,7 +14,7 @@ describe("Radar Item Reducer: ", () => {
   it("Should add an item to new state", () => {
     const state = RadarItemReducer(
       undefined,
-      Actions.AddRadarItem({
+      Actions.AddRadarItem(someRadarId, {
         name: "nameo",
         ring: "assess",
         section: "test",
@@ -39,7 +41,7 @@ describe("Radar Item Reducer: ", () => {
           notes: "This thing looks pretty cool hey!"
         }
       },
-      Actions.UpdateRadarItem({
+      Actions.UpdateRadarItem(someRadarId, {
         name: "nameo",
         ring: "hold",
         section: "fish",
@@ -71,7 +73,7 @@ describe("Radar Item Reducer: ", () => {
           notes: "This thing looks pretty cool hey2!"
         }
       },
-      Actions.UpdateRadarItem({
+      Actions.UpdateRadarItem(someRadarId, {
         name: "nameo",
         ring: "hold",
         section: "fish",

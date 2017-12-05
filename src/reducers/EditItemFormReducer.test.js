@@ -8,6 +8,9 @@ describe("Edit Item Form: ", () => {
     section: "",
     notes: ""
   });
+
+  const someRadarId = 'Radar Id #Random';
+  
   it("Should return state for action its not using", () => {
     const newState = EditItemForm(undefined, { type: "some other action" });
     expect(newState).toEqual(emptyState);
@@ -29,7 +32,7 @@ describe("Edit Item Form: ", () => {
   it("Should set values based on initial edit action", () => {
     const newState = EditItemForm(
       emptyState,
-      AppActions.EditItem({
+      AppActions.EditItem(someRadarId, {
         name: "1",
         ring: "2",
         section: "3",

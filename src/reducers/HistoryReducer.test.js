@@ -14,6 +14,7 @@ const itemUpdated = Object.freeze({
   section: "segment",
   notes: "note"
 });
+const someRadarId = 'some radar id';
 describe("History Reducer: ", () => {
   it("Should initialise from unknown event", () => {
     const newState = HistoryReducer(undefined, { type: "Its a me eventio" });
@@ -24,7 +25,7 @@ describe("History Reducer: ", () => {
     const timestamp = Date.now();
     const newState = HistoryReducer(
       emptyObject,
-      AppActions.AddRadarItem(item1, timestamp)
+      AppActions.AddRadarItem(someRadarId, item1, timestamp)
     );
     expect(newState).toEqual({
       item1: [{ item: item1, timestamp: timestamp }]
@@ -39,7 +40,7 @@ describe("History Reducer: ", () => {
     });
     const newState = HistoryReducer(
       previousState,
-      AppActions.UpdateRadarItem(item1, timestamp2)
+      AppActions.UpdateRadarItem(someRadarId, item1, timestamp2)
     );
 
     expect(newState).toEqual({
