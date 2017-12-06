@@ -5,7 +5,9 @@ import { push } from "react-router-redux";
 import styled from "styled-components";
 
 const Nav = styled.nav`
-background-color: #c5d4c5;
+/* background-color: #d6f5d6; */
+background-color: #145214;
+color:#fff;
 width: 100%;
 height: 2rem;
 display: flex;
