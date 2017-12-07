@@ -25,9 +25,6 @@ class ItemDetails extends React.Component{
       this.props.onCancel();
     }
   }
-  componentWillReceiveProps(){
-    // console.log()
-  }
   shouldComponentUpdate(){}
   componentWillUpdate(){}
   render(){
@@ -69,41 +66,6 @@ class ItemDetails extends React.Component{
   componentDidUpdate(){}
 
 }
-// const ItemDetails = ({
-//   onSubmit,
-//   onCancel,
-//   onNameChange,
-//   onRingChange,
-//   onSectionChange,
-//   onNotesChange,
-//   name,
-//   ring,
-//   section,
-//   notes,
-//   itemHistory
-// }) => {
-//   const handleSubmit = () => {
-//     onSubmit({ name, ring, section, notes });
-//   };
-//   return (
-//     <div style={{ width: "100%" }}>
-//       <h1>{name}</h1>
-//       <TextInput onChange={onRingChange} text={ring} label={"Ring: "} />
-//       <ComboBox
-//           onChange={onSectionChange}
-//           value={section}
-//           label="Section: "
-//           selectionOptions={["tools", "processes", "honeycomb"]}
-//         />
-
-//       <TextBox onChange={onNotesChange} value={notes} />
-//       <Button onClick={handleSubmit}>Ok</Button>
-//       <Button onClick={onCancel}>Cancel</Button>
-//       <hr />
-//       <ItemHistory itemHistory={itemHistory} />
-//     </div>
-//   );
-// };
 
 const ItemHistory = ({itemHistory}) => {
   return <div>
