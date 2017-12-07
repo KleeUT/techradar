@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import styled from "styled-components";
-
+import { EmptyField, Navigator } from "./util/Colors";
 const Nav = styled.nav`
 /* background-color: #d6f5d6; */
-background-color: #145214;
-color:#fff;
+background-color: ${Navigator};
+color:${EmptyField};
 width: 100%;
 height: 2rem;
 display: flex;
@@ -21,7 +21,8 @@ height: 100%;
 vertical-align:bottom;
 /* background-color: #ze1f3e1; */
 :hover{
-    background: #fff;
+    background: ${EmptyField};
+    color: ${Navigator};
 }
 `;
 const Logo = styled.img`
