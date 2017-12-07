@@ -44,8 +44,8 @@ class RadarNav extends React.Component {
         <a onClick={() => this.props.navigate("/")}>
           <Logo src="/radar.svg" />
         </a>
-        <Link onClick={() => this.props.navigate("/radar")}>Radar</Link>
-        <Link onClick={() => this.props.navigate("/list")}>List</Link>
+        {this.props.hasRadarSelected ? <Link onClick={() => this.props.navigate("/radar")}>Radar</Link> : ''}
+        {this.props.hasRadarSelected ? <Link onClick={() => this.props.navigate("/list")}>List</Link> : '' }
       </Nav>
     );
   }
@@ -62,7 +62,8 @@ const matchdispatchToProps = dispatch => {
 };
 const matchStateToProps = state => {
   return {
-    currentPage: state.router.location.pathname
+    currentPage: state.router.location.pathname,
+    hasRadarSelected: state.currentRadar
   };
 };
 
