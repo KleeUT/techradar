@@ -6,8 +6,7 @@ export default (state = new Map(), action) => {
             newState.set(action.value.id, {id: action.value.id, name:action.value.name, items:[]});
             return newState;
         case AppActions.UpdateRadarName().type:
-            let v = {...newState.get(action.value.id), name: action.value.name}
-            newState.set(action.value.id, v)
+            newState.set(action.value.id, {...newState.get(action.value.id), name: action.value.name})
             return newState;
         default:
             return state;

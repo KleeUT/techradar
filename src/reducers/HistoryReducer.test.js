@@ -14,7 +14,7 @@ const itemUpdated = Object.freeze({
   section: "segment",
   notes: "note"
 });
-const someRadarId = 'some radar id';
+const someRadarId = "some radar id";
 describe("History Reducer: ", () => {
   it("Should initialise from unknown event", () => {
     const newState = HistoryReducer(undefined, { type: "Its a me eventio" });

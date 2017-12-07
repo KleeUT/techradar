@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import propTypes from "prop-types";
-
+import { ActiveDutyGreen, NonCombatantGreen } from '../util/Colors'
 const Button = styled.button`
         padding:0.75rem;
-        background-color: ${props => props.canClick ? '#2A2' : '#464' };
+        background-color: ${props => props.canClick ? ActiveDutyGreen : NonCombatantGreen };
         color: ${props => props.canClick ? '#fff' : '#999' };
         border:0;
         margin:0.5rem;

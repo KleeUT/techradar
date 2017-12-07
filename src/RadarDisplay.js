@@ -8,10 +8,10 @@ import Button from "./components/Button";
 import { push } from "react-router-redux";
 import propTypes from "prop-types";
 
-const ListDisplay = ({ radarItems, addItem, editItem, populateState }) => {
+const ListDisplay = ({ radarName, radarItems, addItem, editItem, populateState }) => {
   return (
     <div>
-      <PrimaryHeading>Radar Display</PrimaryHeading>
+      <PrimaryHeading>{radarName}</PrimaryHeading>
       <table>
         <thead>
           <tr>
@@ -63,10 +63,13 @@ const matchDispachToProps = dispach => {
 };
 
 const matchStateToProps = state => {
+  let currentRadar = state.radars.get(state.currentRadar) || {}; 
+  
   return {
     radarItems: Object.keys(state.radarItem).map(key => {
       return { ...state.radarItem[key], key: key };
-    })
+    }),
+    radarName: currentRadar.name,
   };
 };
 

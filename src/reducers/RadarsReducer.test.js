@@ -33,4 +33,8 @@ describe("Radar Reducer", () => {
     );
     expect(actualState).toEqual(expectedState);
   });
+
+  it('Should be able to select a radar', () => {
+      throw 'dopp'
+  })
 });

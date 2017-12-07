@@ -39,3 +39,10 @@ export const UpdateRadarName = (radarId, item) => {
         value: item
     }
 }
+
+export const SelectRadar = (radarId) => {
+    return {
+        type: "SELECT_RADAR",
+        radarId: radarId
+    }
+}
