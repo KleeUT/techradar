@@ -9,7 +9,7 @@ import {
 } from "react-router-redux";
 
 import { Provider } from "react-redux";
-import { Route } from "react-router";
+import { Route, Switch } from "react-router";
 import createHistory from "history/createBrowserHistory";
 
 import "./App.css";
@@ -20,6 +20,8 @@ import AddItem from "./AddItem";
 import ItemDetails from "./ItemDetails";
 import Dashboard from "./Dashboard";
 import NavBarWrapper from "./NavBarWrapper";
+import NeedsARadarSelectedWrapper
+  from "./components/NeedsARadarSelectedWrapper";
 
 import RadarItemReducer from "./reducers/RadarItemReducer";
 import LoggingReducer from "./reducers/LoggingReducer";
@@ -27,7 +29,7 @@ import AddItemFormReducer from "./reducers/AddItemFormReducer";
 import EditItemFormReducer from "./reducers/EditItemFormReducer";
 import HistoryReducer from "./reducers/HistoryReducer";
 import RadarsReducer from "./reducers/RadarsReducer";
-import CurrentRadarReducer from './reducers/CurrentRadarReducer'
+import CurrentRadarReducer from "./reducers/CurrentRadarReducer";
 const history = createHistory();
 const middleware = routerMiddleware(history);
 
@@ -74,11 +76,44 @@ class App extends Component {
           <Main>
             <NavBarWrapper>
               <ContentContainer>
+                <Switch>
                 <Route exact path="/" component={Dashboard} />
-                <Route exact path="/radar" component={RadarDisplay} />
-                <Route exact path="/list" component={ListDisplay} />
-                <Route path="/add-item" component={AddItem} />
-                <Route path="/item-details" component={ItemDetails} />
+                <Route
+                  exact
+                  path="/radar"
+                  component={() => (
+                    <NeedsARadarSelectedWrapper>
+                      <RadarDisplay />
+                    </NeedsARadarSelectedWrapper>
+                  )}
+                />
+                <Route
+                  exact
+                  path="/list"
+                  component={() => (
+                    <NeedsARadarSelectedWrapper>
+                      <ListDisplay />
+                    </NeedsARadarSelectedWrapper>
+                  )}
+                />
+                <Route
+                  path="/add-item"
+                  component={() => (
+                    <NeedsARadarSelectedWrapper>
+                      <AddItem />
+                    </NeedsARadarSelectedWrapper>
+                  )}
+                />
+                <Route
+                  path="/item-details"
+                  component={() => (
+                    <NeedsARadarSelectedWrapper>
+                      <ItemDetails />
+                    </NeedsARadarSelectedWrapper>
+                  )}
+                />
+                <Route path="*" component={() => <h1>Nope</h1>} />
+                </Switch>
               </ContentContainer>
             </NavBarWrapper>
           </Main>

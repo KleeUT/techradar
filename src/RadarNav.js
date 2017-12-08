@@ -34,10 +34,6 @@ margin-right: 0.5rem;
 `;
 
 class RadarNav extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Nav>
@@ -63,7 +59,7 @@ const matchdispatchToProps = dispatch => {
 const matchStateToProps = state => {
   return {
     currentPage: state.router.location.pathname,
-    hasRadarSelected: state.currentRadar
+    hasRadarSelected: !!state.currentRadar
   };
 };
 

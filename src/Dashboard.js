@@ -33,10 +33,6 @@ const RadarInstance = styled.div`
 `
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const radars = this.props.radars
     return (
@@ -77,7 +73,7 @@ const matchdispatchToProps = dispatch => {
 };
 const matchStateToProps = state => {
   return {
-    radars: [... state.radars]
+    radars: [...state.radars]
   };
 };
 

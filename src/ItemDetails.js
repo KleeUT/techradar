@@ -17,9 +17,6 @@ width:100%;
 `;
 
 class ItemDetails extends React.Component{
-  constructor(props){
-    super(props)    
-  }
   componentDidMount(){
     if(this.props.name === ''){
       this.props.onCancel();
@@ -34,7 +31,6 @@ class ItemDetails extends React.Component{
     let {
         onSubmit,
         onCancel,
-        onNameChange,
         onRingChange,
         onSectionChange,
         onNotesChange,

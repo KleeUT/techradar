@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { PrimaryHeading } from "./components/Headings";
 import * as Actions from "./actions/Actions";
-import RadarItem from "./components/RadarItem";
+// import RadarItem from "./components/RadarItem";
 import Button from "./components/Button";
 
 import { push } from "react-router-redux";
@@ -12,28 +12,7 @@ const ListDisplay = ({ radarName, radarItems, addItem, editItem, populateState }
   return (
     <div>
       <PrimaryHeading>{radarName}</PrimaryHeading>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Section</th>
-            <th>Ring</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          {radarItems.map(item => (
-            <RadarItem
-              key={item.key}
-              name={item.name}
-              section={item.section}
-              ring={item.ring}
-              notes={item.notes}
-              edit={() => editItem(item)}
-            />
-          ))}
-        </tbody>
-      </table>
+      <h2>/Radar</h2>
       <Button onClick={addItem} canClick={true}>Add Item</Button>
       <Button onClick={populateState} canClick={true}>Populate</Button>
     </div>
