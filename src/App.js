@@ -77,42 +77,39 @@ class App extends Component {
             <NavBarWrapper>
               <ContentContainer>
                 <Switch>
-                <Route exact path="/" component={Dashboard} />
-                <Route
-                  exact
-                  path="/radar"
-                  component={() => (
-                    <NeedsARadarSelectedWrapper>
-                      <RadarDisplay />
-                    </NeedsARadarSelectedWrapper>
-                  )}
-                />
-                <Route
-                  exact
-                  path="/list"
-                  component={() => (
-                    <NeedsARadarSelectedWrapper>
-                      <ListDisplay />
-                    </NeedsARadarSelectedWrapper>
-                  )}
-                />
-                <Route
-                  path="/add-item"
-                  component={() => (
-                    <NeedsARadarSelectedWrapper>
-                      <AddItem />
-                    </NeedsARadarSelectedWrapper>
-                  )}
-                />
-                <Route
-                  path="/item-details"
-                  component={() => (
-                    <NeedsARadarSelectedWrapper>
-                      <ItemDetails />
-                    </NeedsARadarSelectedWrapper>
-                  )}
-                />
-                <Route path="*" component={() => <h1>Nope</h1>} />
+                  <Route exact path="/" component={Dashboard} />
+                  <Route
+                    path="/radar"
+                    component={() => (
+                      <NeedsARadarSelectedWrapper>
+                        <RadarDisplay />
+                      </NeedsARadarSelectedWrapper>
+                    )}
+                  />
+                  <Route
+                    path="/list"
+                    component={() => (
+                      <NeedsARadarSelectedWrapper>
+                        <ListDisplay />
+                      </NeedsARadarSelectedWrapper>
+                    )}
+                  />
+                  <Route
+                    path="/add-item"
+                    component={() => (
+                      <NeedsARadarSelectedWrapper>
+                        <AddItem />
+                      </NeedsARadarSelectedWrapper>
+                    )}
+                  />
+                  <Route
+                    path="/item-details"
+                    component={() => (
+                      <NeedsARadarSelectedWrapper>
+                        <ItemDetails />
+                      </NeedsARadarSelectedWrapper>
+                    )}
+                  />
                 </Switch>
               </ContentContainer>
             </NavBarWrapper>
