@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import propTypes from "prop-types";
-import Button from './Button';
+import Button from './button/Button';
 
 const Component = ({ name, ring, section, notes, edit }) => {
   const TextDisplay = styled.td``;

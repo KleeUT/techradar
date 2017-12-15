@@ -1,10 +1,14 @@
 import * as Actions from "../actions/Actions";
-export default (state = {}, action) => {
+export default (state, action) => {
+  let newState = state instanceof Map ? new Map(state) : new Map();
   switch (action.type) {
     case Actions.AddRadarItem().type:
-      return upsertItem(state, action.value);
+      return newState.set(action.value.name, action.value);
+
     case Actions.UpdateRadarItem().type:
-      return upsertItem(state, action.value);
+      console.log("fadsfsafsdfsafasd");
+      return newState.set(action.value.name, action.value);
+
     default:
       return state;
   }

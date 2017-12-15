@@ -1,7 +1,7 @@
 export const AddRadarItem = (radarId, item, timestamp) => {
     return {
         type: "ADD_RADAR_ITEM",
-        radarid: radarId,
+        radarId: radarId,
         value: item,
         timestamp: timestamp
     }
@@ -10,7 +10,7 @@ export const AddRadarItem = (radarId, item, timestamp) => {
 export const UpdateRadarItem = (radarId, item, timestamp) => {
     return {
         type: "UPDATE_RADAR_ITEM",
-        radarid: radarId,        
+        radarId: radarId,        
         value: item,
         timestamp: timestamp
     }
@@ -19,7 +19,7 @@ export const UpdateRadarItem = (radarId, item, timestamp) => {
 export const EditItem = (radarId, item) => {
     return {
         type: "EDIT_RADAR_ITEM",
-        radarid: radarId,                
+        radarId: radarId,                
         value: item
     }
 }
@@ -27,7 +27,7 @@ export const EditItem = (radarId, item) => {
 export const AddRadar = (radarId, radar) => {
     return {
         type: "ADD_RADAR",
-        radarid: radarId,                
+        radarId: radarId,                
         value: radar
     }
 }
@@ -35,7 +35,7 @@ export const AddRadar = (radarId, radar) => {
 export const UpdateRadarName = (radarId, item) => {
     return {
         type: "UPDATE_RADAR_NAME",
-        radarid: radarId,                
+        radarId: radarId,                
         value: item
     }
 }

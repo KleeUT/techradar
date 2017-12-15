@@ -5,7 +5,7 @@ import propTypes from "prop-types";
 import styled from "styled-components";
 import * as FormActions from "./actions/AddItemFormActions";
 import * as RadarActions from "./actions/Actions";
-import Button from "./components/Button";
+import Button from "./components/button/Button";
 import ComboBox from "./components/ComboBox";
 import TextInput from "./components/TextInput";
 import RingSelector from "./components/RingSelector";
@@ -17,6 +17,7 @@ resize:none;
 `;
 
 const AddItem = ({
+  radarId,
   onSubmit,
   onCancel,
   onNameChange,
@@ -34,7 +35,7 @@ const AddItem = ({
   existingNames
 }) => {
   const handleSubmit = () => {
-    onSubmit({ name, ring, section, notes });
+    onSubmit(radarId, { name, ring, section, notes });
   };
   return (
     <div style={{ width: "100%" }}>
@@ -66,6 +67,7 @@ const AddItem = ({
 };
 
 AddItem.propTypes = {
+  radarId: propTypes.string,
   onSubmit: propTypes.func,
   onCancel: propTypes.func,
   onNameChange: propTypes.func,
@@ -98,33 +100,33 @@ const matchDispachToProps = (dispach, ownProps) => {
     onNotesChange: e => {
       dispach(FormActions.UpdateNotes(e.target.value));
     },
-    onSubmit: e => {
-      dispach(RadarActions.AddRadarItem(e, Date.now()));
-      dispach(push(""));
+    onSubmit: (id, newItem) => {
+      dispach(RadarActions.AddRadarItem(id, newItem, Date.now()));
+      dispach(push("/radar"));
       dispach(FormActions.ClearForm);
     },
     onCancel: () => {
       dispach(FormActions.ClearForm);
-      dispach(push(""));
+      dispach(push("/radar"));
     }
   };
 };
 const matchStateToProps = state => {
+  const currentRadarItems = [...(state.radars.get(state.currentRadar) || { items:[] }).items]
+  const existingNames = currentRadarItems.map(x => x.name)
   return {
+    radarId: state.currentRadar,
     name: state.addItemForm.name,
     nameValid: !!state.addItemForm.name &&
-      !Object.keys(state.radarItem).includes(state.addItemForm.name),
+      !existingNames.includes(state.addItemForm.name),
     ring: state.addItemForm.ring,
     ringValid: !!state.addItemForm.ring,
     section: state.addItemForm.section,
     sectionValid: (text) => !!text,
     notes: state.addItemForm.notes,
-    sectionOptions: Object.keys(state.radarItem)
-      .map(key => {
-        return state.radarItem[key].section;
-      })
-      .reduce((x, y) => (x.includes(y) ? x : [...x, y]), []),
-    existingNames: Object.keys(state.radarItem)
+    sectionOptions: currentRadarItems
+      .reduce((previous, current) => (previous.includes(current.section) ? previous : [...previous, current.section]), []),
+    existingNames: existingNames
   };
 };
 

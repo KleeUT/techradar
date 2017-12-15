@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import * as Actions from './actions/Actions';
 import * as Colors from './util/Colors'
-import Button from "./components/Button"
+import Button from "./components/button/Button"
 
 const RadarsList = styled.div`
 display:flex;

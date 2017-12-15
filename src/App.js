@@ -41,7 +41,6 @@ const store = createStore(
     addItemForm: AddItemFormReducer,
     editItemForm: EditItemFormReducer,
 
-    radarItem: RadarItemReducer,
     history: HistoryReducer,
     radars: RadarsReducer,
     currentRadar: CurrentRadarReducer
