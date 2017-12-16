@@ -22,14 +22,17 @@ import Dashboard from "./Dashboard";
 import NavBarWrapper from "./NavBarWrapper";
 import NeedsARadarSelectedWrapper
   from "./components/NeedsARadarSelectedWrapper";
+import NeedsToBeLoggedIn from './login/NeedsToBeLoggedIn';
 
-import RadarItemReducer from "./reducers/RadarItemReducer";
 import LoggingReducer from "./reducers/LoggingReducer";
 import AddItemFormReducer from "./reducers/AddItemFormReducer";
 import EditItemFormReducer from "./reducers/EditItemFormReducer";
 import HistoryReducer from "./reducers/HistoryReducer";
 import RadarsReducer from "./reducers/RadarsReducer";
 import CurrentRadarReducer from "./reducers/CurrentRadarReducer";
+import LoginReducer from './login/LoginReducer';
+import LoginFormReducer from './login/LoginFormReducer';
+
 const history = createHistory();
 const middleware = routerMiddleware(history);
 
@@ -40,7 +43,9 @@ const store = createStore(
 
     addItemForm: AddItemFormReducer,
     editItemForm: EditItemFormReducer,
+    loginForm: LoginFormReducer, 
 
+    login: LoginReducer,
     history: HistoryReducer,
     radars: RadarsReducer,
     currentRadar: CurrentRadarReducer
@@ -76,7 +81,11 @@ class App extends Component {
             <NavBarWrapper>
               <ContentContainer>
                 <Switch>
-                  <Route exact path="/" component={Dashboard} />
+                  <Route exact path="/" component={() => (
+                    <NeedsToBeLoggedIn>
+                      <Dashboard />
+                    </NeedsToBeLoggedIn>
+                  )} />
                   <Route
                     path="/radar"
                     component={() => (
