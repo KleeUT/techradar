@@ -1,8 +1,9 @@
 import reducer from "./RadarsReducer";
 import * as actions from "../actions/Actions";
 
-const emptyState = Object.freeze(new Map());
-const sampleId = "sampleId123";
+const emptyState = Object.freeze({});
+const radarId = "Radar Id";
+
 describe("Radar Reducer", () => {
   it("Should return default state for unknown action", () => {
     const state = reducer(emptyState, { type: "Some thing else" });
@@ -10,66 +11,59 @@ describe("Radar Reducer", () => {
   });
 
   it("Should add a radar.", () => {
-    const expectedState = new Map([
-      [sampleId, { id: sampleId, name: "radar 1", items: new Map() }]
-    ]);
+    const expectedState = {};
+    expectedState[radarId] = { id: radarId, name: "radar 1", items: {} };
+
     const actualState = reducer(
       emptyState,
-      actions.AddRadar(sampleId, { id: sampleId, name: "radar 1" })
+      actions.AddRadar(radarId, { id: radarId, name: "radar 1" })
     );
     expect(actualState).toEqual(expectedState);
   });
 
   it("Should be able to update radar name", () => {
-    const previousState = Object.freeze(
-      new Map([
-        [sampleId, { id: sampleId, name: "old name", items: new Map() }]
-      ])
-    );
-    const expectedState = new Map([
-      [sampleId, { id: sampleId, name: "New Name", items: new Map() }]
-    ]);
+    const previousState = {};
+    previousState[radarId] = { id: radarId, name: "old name", items: {} };
+    Object.freeze(previousState);
+
+    const expectedState = {};
+    expectedState[radarId] = { id: radarId, name: "New Name", items: {} };
+
     const actualState = reducer(
       previousState,
-      actions.UpdateRadarName(sampleId, { id: sampleId, name: "New Name" })
+      actions.UpdateRadarName(radarId, { id: radarId, name: "New Name" })
     );
     expect(actualState).toEqual(expectedState);
   });
 
   it("Should be able to add an item to a radar.", () => {
-    const previousState = Object.freeze(
-      new Map([
-        [sampleId, { id: sampleId, name: "old name", items: new Map() }]
-      ])
-    );
-    const expectedState = new Map([
-      [
-        sampleId,
-        {
-          id: sampleId,
-          name: "old name",
-          items: new Map([
-            [
-              "new item",
-              {
-                name: "new item",
-                ring: "adopt",
-                section: "secular",
-                notes: "note not no n"
-              }
-            ]
-          ])
+    const previousState = {};
+    previousState[radarId] = { id: radarId, name: "old name", items: {} };
+    Object.freeze(previousState);
+
+    const expectedState = {};
+    expectedState[radarId] = {
+      id: radarId,
+      name: "old name",
+      items: {
+        "new item": {
+          name: "new item",
+          ring: "adopt",
+          section: "secular",
+          notes: "note not no n",
+          key: 'new item'
         }
-      ]
-    ]);
+      }
+    };
+
     const actualState = reducer(
       previousState,
-      actions.AddRadarItem(sampleId, {
-        name: "new item",
-        ring: "adopt",
-        section: "secular",
-        notes: "note not no n"
-      })
+      actions.AddRadarItem(radarId, 
+        "new item",
+        "adopt",
+        "secular",
+        "note not no n"
+      )
     );
     expect(actualState).toEqual(expectedState);
   });

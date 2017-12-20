@@ -73,7 +73,7 @@ const matchdispatchToProps = dispatch => {
 };
 const matchStateToProps = state => {
   return {
-    radars: [...state.radars]
+    radars: Object.keys(state.radars).map(key => [key, state.radars[key]])
   };
 };
 

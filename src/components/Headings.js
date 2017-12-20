@@ -6,3 +6,10 @@ export const PrimaryHeading = ({children}) =>{
     `
     return <Heading>{children}</Heading>
 }
+
+export const SecondaryHeading = ({children}) =>{
+    const Heading = styled.h1`
+        text-align:center;
+    `
+    return <Heading>{children}</Heading>
+}

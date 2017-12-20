@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import "./App.css";
 
+import styled from "styled-components";
+import React, { Component } from "react";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import {
   ConnectedRouter,
@@ -12,7 +13,8 @@ import { Provider } from "react-redux";
 import { Route, Switch } from "react-router";
 import createHistory from "history/createBrowserHistory";
 
-import "./App.css";
+import {loadState, saveState} from './util/LocalStorageStatePersister'
+
 
 import RadarDisplay from "./RadarDisplay";
 import ListDisplay from "./ListDisplay";
@@ -22,7 +24,7 @@ import Dashboard from "./Dashboard";
 import NavBarWrapper from "./NavBarWrapper";
 import NeedsARadarSelectedWrapper
   from "./components/NeedsARadarSelectedWrapper";
-import NeedsToBeLoggedIn from './login/NeedsToBeLoggedIn';
+import NeedsToBeLoggedIn from "./login/NeedsToBeLoggedIn";
 
 import LoggingReducer from "./reducers/LoggingReducer";
 import AddItemFormReducer from "./reducers/AddItemFormReducer";
@@ -30,11 +32,13 @@ import EditItemFormReducer from "./reducers/EditItemFormReducer";
 import HistoryReducer from "./reducers/HistoryReducer";
 import RadarsReducer from "./reducers/RadarsReducer";
 import CurrentRadarReducer from "./reducers/CurrentRadarReducer";
-import LoginReducer from './login/LoginReducer';
-import LoginFormReducer from './login/LoginFormReducer';
+import LoginReducer from "./login/LoginReducer";
+import LoginFormReducer from "./login/LoginFormReducer";
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
+
+const previousState = loadState();
 
 const store = createStore(
   combineReducers({
@@ -43,15 +47,20 @@ const store = createStore(
 
     addItemForm: AddItemFormReducer,
     editItemForm: EditItemFormReducer,
-    loginForm: LoginFormReducer, 
+    loginForm: LoginFormReducer,
 
     login: LoginReducer,
     history: HistoryReducer,
     radars: RadarsReducer,
     currentRadar: CurrentRadarReducer
   }),
+  previousState,
   applyMiddleware(middleware)
 );
+
+store.subscribe(() => {
+  saveState(store.getState());
+})
 
 const ContentContainer = styled.div`
 padding:1rem;
@@ -81,11 +90,15 @@ class App extends Component {
             <NavBarWrapper>
               <ContentContainer>
                 <Switch>
-                  <Route exact path="/" component={() => (
-                    <NeedsToBeLoggedIn>
-                      <Dashboard />
-                    </NeedsToBeLoggedIn>
-                  )} />
+                  <Route
+                    exact
+                    path="/"
+                    component={() => (
+                      <NeedsToBeLoggedIn>
+                        <Dashboard />
+                      </NeedsToBeLoggedIn>
+                    )}
+                  />
                   <Route
                     path="/radar"
                     component={() => (

@@ -6,13 +6,15 @@ const item1 = Object.freeze({
   name: "item1",
   ring: "of death",
   section: "segment",
-  notes: "note"
+  notes: "note",
+  key: "item1"  
 });
 const itemUpdated = Object.freeze({
   name: "item1",
   ring: "of death",
   section: "segment",
-  notes: "note"
+  notes: "note",
+  key: "item1"
 });
 const someRadarId = "some radar id";
 describe("History Reducer: ", () => {
@@ -25,11 +27,11 @@ describe("History Reducer: ", () => {
     const timestamp = Date.now();
     const newState = HistoryReducer(
       emptyObject,
-      AppActions.AddRadarItem(someRadarId, item1, timestamp)
+      AppActions.AddRadarItem(someRadarId, item1.name, item1.ring, item1.section, item1.notes, timestamp)
     );
     expect(newState).toEqual({
       item1: [{ item: item1, timestamp: timestamp }]
-    }); // I think i need time here how do I do that testabley
+    }); 
   });
 
   it("Should add history entry after an update", () => {

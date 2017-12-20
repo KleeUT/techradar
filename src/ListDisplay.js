@@ -1,16 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { PrimaryHeading } from "./components/Headings";
+import { PrimaryHeading, SecondaryHeading } from "./components/Headings";
 import * as Actions from "./actions/Actions";
 import RadarItem from "./components/RadarItem";
 import Button from "./components/button/Button";
 import { push } from "react-router-redux";
 import propTypes from "prop-types";
 
-const ListDisplay = ({ radarItems, addItem, editItem, populateState }) => {
+const ListDisplay = ({
+  radarItems,
+  radarName,
+  addItem,
+  editItem,
+  populateState
+}) => {
   return (
     <div>
-      <PrimaryHeading>List Display</PrimaryHeading>
+      <PrimaryHeading>radarName</PrimaryHeading>
+      <SecondaryHeading>List Display</SecondaryHeading>
       <table>
         <thead>
           <tr>
@@ -45,19 +52,21 @@ ListDisplay.propTypes = {
 
 const matchDispachToProps = dispach => {
   return {
-    // addItem: () => dispach(Actions.AddRadarItem({name:`Test Item ${Math.random()}`, section:'testing'}))
-    addItem: () => dispach(push('/add-item')),
-    editItem: (item) => {
+    addItem: () => dispach(push("/add-item")),
+    editItem: item => {
       dispach(Actions.EditItem(item));
-      dispach(push('/item-details'));
+      dispach(push("/item-details"));
     }
   };
 };
 
 const matchStateToProps = state => {
+  const currentRadar = state.radars[state.currentRadar];
   return {
-    radarItems: [...(state.radars.get(state.currentRadar) || { items: new Map()}).items]
-    .map(x => {return {...x[1], key: x[0]}}),
+    radarItems: Object.keys((currentRadar || { items: {} }).items)
+      .map(x => currentRadar.items[x])
+      .filter(x => x !== undefined),
+    radarName: currentRadar.name
   };
 };
 

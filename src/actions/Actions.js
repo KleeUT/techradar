@@ -1,8 +1,8 @@
-export const AddRadarItem = (radarId, item, timestamp) => {
+export const AddRadarItem = (radarId, name, ring, section, notes, timestamp) => {
     return {
         type: "ADD_RADAR_ITEM",
         radarId: radarId,
-        value: item,
+        value: {name, ring, section, notes, key: name},
         timestamp: timestamp
     }
 } 

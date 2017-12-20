@@ -35,7 +35,7 @@ const AddItem = ({
   existingNames
 }) => {
   const handleSubmit = () => {
-    onSubmit(radarId, { name, ring, section, notes });
+    onSubmit(radarId, name, ring, section, notes);
   };
   return (
     <div style={{ width: "100%" }}>
@@ -100,8 +100,8 @@ const matchDispachToProps = (dispach, ownProps) => {
     onNotesChange: e => {
       dispach(FormActions.UpdateNotes(e.target.value));
     },
-    onSubmit: (id, newItem) => {
-      dispach(RadarActions.AddRadarItem(id, newItem, Date.now()));
+    onSubmit: (id, name, ring, section, notes) => {
+      dispach(RadarActions.AddRadarItem(id, name, ring, section, notes, Date.now()));
       dispach(push("/radar"));
       dispach(FormActions.ClearForm);
     },
