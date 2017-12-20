@@ -1,5 +1,5 @@
 import EditItemForm from "./EditItemFormReducer";
-import * as AppActions from "../actions/Actions";
+import * as AppActions from "../actions/RadarActionsCreator";
 import * as FormActions from "../actions/EditItemFormActions";
 describe("Edit Item Form: ", () => {
   const emptyState = Object.freeze({

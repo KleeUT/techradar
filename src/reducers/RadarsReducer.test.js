@@ -1,5 +1,5 @@
 import reducer from "./RadarsReducer";
-import * as actions from "../actions/Actions";
+import * as actions from "../actions/RadarActionsCreator";
 
 const emptyState = Object.freeze({});
 const radarId = "Radar Id";

@@ -1,6 +1,14 @@
+export const types = {
+    addRadarItem : "ADD_RADAR_ITEM",
+    updateRadarItem: "UPDATE_RADAR_ITEM",
+    editRadaritem: "EDIT_RADAR_ITEM",
+    addRadar: "ADD_RADAR",
+    updateRadaName:"UPDATE_RADAR_NAME",
+    selectRadar: "SELECT_RADAR"
+}
 export const AddRadarItem = (radarId, name, ring, section, notes, timestamp) => {
     return {
-        type: "ADD_RADAR_ITEM",
+        type: types.addRadarItem,
         radarId: radarId,
         value: {name, ring, section, notes, key: name},
         timestamp: timestamp
@@ -9,7 +17,7 @@ export const AddRadarItem = (radarId, name, ring, section, notes, timestamp) => 
 
 export const UpdateRadarItem = (radarId, item, timestamp) => {
     return {
-        type: "UPDATE_RADAR_ITEM",
+        type: types.updateRadarItem,
         radarId: radarId,        
         value: item,
         timestamp: timestamp
@@ -18,7 +26,7 @@ export const UpdateRadarItem = (radarId, item, timestamp) => {
 
 export const EditItem = (radarId, item) => {
     return {
-        type: "EDIT_RADAR_ITEM",
+        type: types.editRadaritem,
         radarId: radarId,                
         value: item
     }
@@ -26,7 +34,7 @@ export const EditItem = (radarId, item) => {
 //////////////////////////////////////////////
 export const AddRadar = (radarId, radar) => {
     return {
-        type: "ADD_RADAR",
+        type: types.addRadar,
         radarId: radarId,                
         value: radar
     }
@@ -34,7 +42,7 @@ export const AddRadar = (radarId, radar) => {
 
 export const UpdateRadarName = (radarId, item) => {
     return {
-        type: "UPDATE_RADAR_NAME",
+        type: types.updateRadarName,
         radarId: radarId,                
         value: item
     }
@@ -42,7 +50,7 @@ export const UpdateRadarName = (radarId, item) => {
 
 export const SelectRadar = (radarId) => {
     return {
-        type: "SELECT_RADAR",
+        type: types.selectRadar,
         radarId: radarId
     }
 }

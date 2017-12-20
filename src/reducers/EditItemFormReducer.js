@@ -1,5 +1,5 @@
 import * as Actions from "../actions/EditItemFormActions";
-import * as AppActions from "../actions/Actions";
+import * as AppActions from "../actions/RadarActionsCreator";
 
 const EditItemReducer = (
   state = {

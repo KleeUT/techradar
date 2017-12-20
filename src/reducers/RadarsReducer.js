@@ -1,4 +1,4 @@
-import * as AppActions from "../actions/Actions";
+import * as AppActions from "../actions/RadarActionsCreator";
 import RadarItemReducer from "./RadarItemReducer";
 export default (state = {}, action) => {
   let newState;

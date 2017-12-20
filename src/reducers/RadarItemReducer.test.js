@@ -1,5 +1,5 @@
 // import RadarItemReducer from "./RadarItemReducer.js";
-// import * as Actions from "../actions/Actions.js";
+// import * as Actions from "../actions/RadarActionsCreator.js";
 
 // const someRadarId = 'Some Radar id';
 

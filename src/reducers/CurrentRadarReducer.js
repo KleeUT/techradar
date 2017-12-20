@@ -1,4 +1,4 @@
-import * as Actions from '../actions/Actions';
+import * as Actions from '../actions/RadarActionsCreator';
 export default (state = "", action) => {
     if(action.type === Actions.SelectRadar().type){
         return action.radarId;

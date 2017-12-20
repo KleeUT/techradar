@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import styled from "styled-components";
 
-import * as Actions from './actions/Actions';
+import * as Actions from './actions/RadarActionsCreator';
 import * as Colors from './util/Colors'
 import Button from "./components/button/Button"
 

@@ -1,4 +1,4 @@
-import * as Actions from "../actions/Actions";
+import * as Actions from "../actions/RadarActionsCreator";
 export default (state = {}, action) => {
   let newState = {...state};
   switch (action.type) {

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { PrimaryHeading, SecondaryHeading } from "./components/Headings";
-import * as Actions from "./actions/Actions";
+import * as Actions from "./actions/RadarActionsCreator";
 import RadarItem from "./components/RadarItem";
 import Button from "./components/button/Button";
 import { push } from "react-router-redux";

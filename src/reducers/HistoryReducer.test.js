@@ -1,5 +1,5 @@
 import HistoryReducer from "./HistoryReducer";
-import * as AppActions from "../actions/Actions";
+import * as AppActions from "../actions/RadarActionsCreator";
 import moment from "moment";
 const emptyObject = Object.freeze({});
 const item1 = Object.freeze({
