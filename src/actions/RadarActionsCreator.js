@@ -15,11 +15,11 @@ export const AddRadarItem = (radarId, name, ring, section, notes, timestamp) => 
     }
 } 
 
-export const UpdateRadarItem = (radarId, item, timestamp) => {
+export const UpdateRadarItem = (radarId, updatedItem, timestamp) => {
     return {
         type: types.updateRadarItem,
         radarId: radarId,        
-        value: item,
+        value: updatedItem,
         timestamp: timestamp
     }
 }
@@ -31,7 +31,7 @@ export const EditItem = (radarId, item) => {
         value: item
     }
 }
-//////////////////////////////////////////////
+///////////////////Radar Actions///////////////////////////
 export const AddRadar = (radarId, radar) => {
     return {
         type: types.addRadar,

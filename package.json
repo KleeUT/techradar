@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "moment": "^2.19.1",
+    "prettier": "^1.9.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -19,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write ./**/*.js"
   }
 }

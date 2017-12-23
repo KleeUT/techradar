@@ -23,7 +23,9 @@ const ListDisplay = ({
       {radarItems.map(item => (
         <div key={item.key}>{JSON.stringify(item)})</div>
       ))}
-      <Button onClick={addItem} canClick={true}>Add Item</Button>
+      <Button onClick={addItem} canClick={true}>
+        Add Item
+      </Button>
       <Button
         onClick={() => {
           populateState(radarId);

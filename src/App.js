@@ -13,8 +13,7 @@ import { Provider } from "react-redux";
 import { Route, Switch } from "react-router";
 import createHistory from "history/createBrowserHistory";
 
-import {loadState, saveState} from './util/LocalStorageStatePersister'
-
+import { loadState, saveState } from "./util/LocalStorageStatePersister";
 
 import RadarDisplay from "./RadarDisplay";
 import ListDisplay from "./ListDisplay";
@@ -22,8 +21,7 @@ import AddItem from "./AddItem";
 import ItemDetails from "./ItemDetails";
 import Dashboard from "./Dashboard";
 import NavBarWrapper from "./NavBarWrapper";
-import NeedsARadarSelectedWrapper
-  from "./components/NeedsARadarSelectedWrapper";
+import NeedsARadarSelectedWrapper from "./components/NeedsARadarSelectedWrapper";
 import NeedsToBeLoggedIn from "./login/NeedsToBeLoggedIn";
 
 import LoggingReducer from "./reducers/LoggingReducer";
@@ -60,22 +58,22 @@ const store = createStore(
 
 store.subscribe(() => {
   saveState(store.getState());
-})
+});
 
 const ContentContainer = styled.div`
-padding:1rem;
+  padding: 1rem;
 `;
 
 const Main = styled.div`
-margin:auto;
-width:960px;
-font-size:18px;
-background-color:#fbfefb;
-min-height:100%;
-border: 2px solid #d6f5d6;
-@media (max-width: 960px) {
-		width:100%;
-	}
+  margin: auto;
+  width: 960px;
+  font-size: 18px;
+  background-color: #fbfefb;
+  min-height: 100%;
+  border: 2px solid #d6f5d6;
+  @media (max-width: 960px) {
+    width: 100%;
+  }
 `;
 
 class App extends Component {

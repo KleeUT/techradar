@@ -10,6 +10,7 @@ import propTypes from "prop-types";
 const ListDisplay = ({
   radarItems,
   radarName,
+  radarId,
   addItem,
   editItem,
   populateState
@@ -35,26 +36,30 @@ const ListDisplay = ({
               section={item.section}
               ring={item.ring}
               notes={item.notes}
-              edit={() => editItem(item)}
+              edit={() => editItem(radarId, item)}
             />
           ))}
         </tbody>
       </table>
-      <Button onClick={addItem} canClick={true}>Add Item</Button>
+      <Button onClick={addItem} canClick={true}>
+        Add Item
+      </Button>
     </div>
   );
 };
 
 ListDisplay.propTypes = {
   radarItems: propTypes.array,
+  radarName: propTypes.string,
+  radarId: propTypes.string,
   addItem: propTypes.func
 };
 
 const matchDispachToProps = dispach => {
   return {
     addItem: () => dispach(push("/add-item")),
-    editItem: item => {
-      dispach(Actions.EditItem(item));
+    editItem: (radarId, item) => {
+      dispach(Actions.EditItem(radarId, item));
       dispach(push("/item-details"));
     }
   };
@@ -66,7 +71,8 @@ const matchStateToProps = state => {
     radarItems: Object.keys((currentRadar || { items: {} }).items)
       .map(x => currentRadar.items[x])
       .filter(x => x !== undefined),
-    radarName: currentRadar.name
+    radarName: currentRadar.name,
+    radarId: state.currentRadar
   };
 };
 

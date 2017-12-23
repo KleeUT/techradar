@@ -1,11 +1,11 @@
-import React from 'react'
-import RadarNav from './RadarNav';
+import React from "react";
+import RadarNav from "./RadarNav";
 
-export default ({children}) => {
-    return (
-        <div>
-            <RadarNav />
-            {children}
-        </div>
-    )
-}
+export default ({ children }) => {
+  return (
+    <div>
+      <RadarNav />
+      {children}
+    </div>
+  );
+};
