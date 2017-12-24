@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { push } from "react-router-redux";
 import styled from "styled-components";
 import { EmptyField, Navigator } from "./util/Colors";
+import {
+  showDashboard,
+  showRadar,
+  showListView
+} from "./actions/RoutingActionCreator";
+
 const Nav = styled.nav`
   /* background-color: #d6f5d6; */
   background-color: ${Navigator};
@@ -37,16 +42,16 @@ class RadarNav extends React.Component {
   render() {
     return (
       <Nav>
-        <a onClick={() => this.props.navigate("/")}>
+        <a onClick={() => this.props.navigate(showDashboard())}>
           <Logo src="/radar.svg" />
         </a>
         {this.props.hasRadarSelected ? (
-          <Link onClick={() => this.props.navigate("/radar")}>Radar</Link>
+          <Link onClick={() => this.props.navigate(showRadar())}>Radar</Link>
         ) : (
           ""
         )}
         {this.props.hasRadarSelected ? (
-          <Link onClick={() => this.props.navigate("/list")}>List</Link>
+          <Link onClick={() => this.props.navigate(showListView())}>List</Link>
         ) : (
           ""
         )}
@@ -61,7 +66,7 @@ RadarNav.propTypes = {
 
 const matchdispatchToProps = dispatch => {
   return {
-    navigate: path => dispatch(push(path))
+    navigate: navigationAction => dispatch(navigationAction)
   };
 };
 const matchStateToProps = state => {

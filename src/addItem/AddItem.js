@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "react-router-redux";
 import propTypes from "prop-types";
 import styled from "styled-components";
-import * as FormActions from "./actions/AddItemFormActions";
-import * as RadarActions from "./actions/RadarActionsCreator";
-import Button from "./components/button/Button";
-import ComboBox from "./components/ComboBox";
-import TextInput from "./components/TextInput";
-import RingSelector from "./components/RingSelector";
+
+import * as FormActions from "./AddItemFormActions";
+import * as RadarActions from "../actions/RadarActionsCreator";
+import { showRadar } from "../actions/RoutingActionCreator";
+import Button from "../components/button/Button";
+import ComboBox from "../components/ComboBox";
+import TextInput from "../components/TextInput";
+import RingSelector from "../components/RingSelector";
 
 const TextBox = styled.textarea`
   font-size: 18px;
@@ -27,7 +28,6 @@ const AddItem = ({
   name,
   nameValid,
   ring,
-  ringValid,
   section,
   sectionValid,
   notes,
@@ -38,7 +38,7 @@ const AddItem = ({
     onSubmit(radarId, name, ring, section, notes);
   };
   return (
-    <div style={{ width: "100%" }}>
+    <div>
       <h1>Add Item</h1>
       <TextInput
         onChange={onNameChange}
@@ -75,7 +75,6 @@ AddItem.propTypes = {
   name: propTypes.string,
   nameValid: propTypes.bool,
   ring: propTypes.string,
-  ringValid: propTypes.bool,
   section: propTypes.string,
   sectionValid: propTypes.func,
   notes: propTypes.string,
@@ -102,19 +101,21 @@ const matchDispachToProps = (dispach, ownProps) => {
       dispach(
         RadarActions.AddRadarItem(id, name, ring, section, notes, Date.now())
       );
-      dispach(push("/radar"));
+      dispach(showRadar());
       dispach(FormActions.ClearForm);
     },
     onCancel: () => {
       dispach(FormActions.ClearForm);
-      dispach(push("/radar"));
+      dispach(showRadar());
     }
   };
 };
 const matchStateToProps = state => {
-  const currentRadarItems = [
-    ...(state.radars.get(state.currentRadar) || { items: [] }).items
-  ];
+  const currentRadar = state.radars[state.currentRadar];
+  const currentRadarItems = Object.keys((currentRadar || { items: {} }).items)
+    .map(x => currentRadar.items[x])
+    .filter(x => x !== undefined);
+
   const existingNames = currentRadarItems.map(x => x.name);
   return {
     radarId: state.currentRadar,
@@ -123,7 +124,6 @@ const matchStateToProps = state => {
       !!state.addItemForm.name &&
       !existingNames.includes(state.addItemForm.name),
     ring: state.addItemForm.ring,
-    ringValid: !!state.addItemForm.ring,
     section: state.addItemForm.section,
     sectionValid: text => !!text,
     notes: state.addItemForm.notes,

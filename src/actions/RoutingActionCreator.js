@@ -10,3 +10,6 @@ export const routes = {
 
 export const showDashboard = () => push(routes.dashboard);
 export const showRadar = () => push(routes.radarDisplay);
+export const showListView = () => push(routes.listDisplay);
+export const showAdditemForm = () => push(routes.addItemForm);
+export const showItemDetailsForm = () => push(routes.itemDetails);

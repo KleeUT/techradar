@@ -1,4 +1,4 @@
-import * as Actions from "../actions/AddItemFormActions";
+import * as Actions from "./AddItemFormActions";
 
 const AddItemReducer = (
   state = {

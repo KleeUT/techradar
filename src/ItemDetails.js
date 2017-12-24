@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "react-router-redux";
+import { showDashboard } from "./actions/RoutingActionCreator";
 import propTypes from "prop-types";
 import styled from "styled-components";
 import * as FormActions from "./actions/EditItemFormActions";
@@ -134,11 +134,11 @@ const matchDispachToProps = (dispach, ownProps) => {
     },
     onSubmit: (radarId, updatedItem) => {
       dispach(RadarActions.UpdateRadarItem(radarId, updatedItem, Date.now()));
-      dispach(push(""));
+      dispach(showDashboard);
     },
     onCancel: () => {
       dispach(FormActions.ClearForm);
-      dispach(push(""));
+      dispach(showDashboard);
     }
   };
 };

@@ -1,5 +1,5 @@
 import AddItemForm from "./AddItemFormReducer";
-import * as Actions from "../actions/AddItemFormActions";
+import * as Actions from "./AddItemFormActions";
 describe("Add Item Form: ", () => {
   const emptyState = Object.freeze({
     name: "",
@@ -13,12 +13,15 @@ describe("Add Item Form: ", () => {
   });
 
   it("Should return empty state clear action", () => {
-    const newState = AddItemForm({
-        name:'1',
-        ring:'2',
-        section:'3',
-        notes:'4'
-    }, Actions.ClearForm);
+    const newState = AddItemForm(
+      {
+        name: "1",
+        ring: "2",
+        section: "3",
+        notes: "4"
+      },
+      Actions.ClearForm
+    );
     expect(newState).toEqual(emptyState);
   });
 

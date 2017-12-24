@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "react-router-redux";
+import { showDashboard } from "../actions/RoutingActionCreator";
 
 class NeedsARadarSelectedWrapper extends React.Component {
   componentWillMount() {
@@ -14,17 +14,15 @@ class NeedsARadarSelectedWrapper extends React.Component {
 }
 
 const mapStateToProps = state => {
-    
   return {
     noRadarSelected: !state.currentRadar,
-    path: state.router.location.pathname,
-    
+    path: state.router.location.pathname
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     goHome: () => {
-      dispatch(push(""));
+      dispatch(showDashboard());
     }
   };
 };

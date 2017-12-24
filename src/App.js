@@ -17,7 +17,7 @@ import { loadState, saveState } from "./util/LocalStorageStatePersister";
 
 import RadarDisplay from "./RadarDisplay";
 import ListDisplay from "./ListDisplay";
-import AddItem from "./AddItem";
+import { AddItem, AddItemFormReducer } from "./addItem";
 import ItemDetails from "./ItemDetails";
 import Dashboard from "./Dashboard";
 import NavBarWrapper from "./NavBarWrapper";
@@ -25,7 +25,6 @@ import NeedsARadarSelectedWrapper from "./components/NeedsARadarSelectedWrapper"
 import NeedsToBeLoggedIn from "./login/NeedsToBeLoggedIn";
 
 import LoggingReducer from "./reducers/LoggingReducer";
-import AddItemFormReducer from "./reducers/AddItemFormReducer";
 import EditItemFormReducer from "./reducers/EditItemFormReducer";
 import HistoryReducer from "./reducers/HistoryReducer";
 import RadarsReducer from "./reducers/RadarsReducer";

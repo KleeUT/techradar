@@ -4,7 +4,10 @@ import { PrimaryHeading, SecondaryHeading } from "./components/Headings";
 import * as Actions from "./actions/RadarActionsCreator";
 import RadarItem from "./components/RadarItem";
 import Button from "./components/button/Button";
-import { push } from "react-router-redux";
+import {
+  showAdditemForm,
+  showItemDetailsForm
+} from "./actions/RoutingActionCreator";
 import propTypes from "prop-types";
 
 const ListDisplay = ({
@@ -57,10 +60,10 @@ ListDisplay.propTypes = {
 
 const matchDispachToProps = dispach => {
   return {
-    addItem: () => dispach(push("/add-item")),
+    addItem: () => dispach(showAdditemForm()),
     editItem: (radarId, item) => {
       dispach(Actions.EditItem(radarId, item));
-      dispach(push("/item-details"));
+      dispach(showItemDetailsForm());
     }
   };
 };
