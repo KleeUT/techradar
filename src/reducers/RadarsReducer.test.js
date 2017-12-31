@@ -1,8 +1,12 @@
 import reducer from "./RadarsReducer";
 import * as actions from "../actions/RadarActionsCreator";
 
-const emptyState = Object.freeze({});
 const radarId = "Radar Id";
+jest.mock("uuid/v4", () => {
+  return () => "Radar Id";
+});
+
+const emptyState = Object.freeze({});
 
 describe("Radar Reducer", () => {
   it("Should return default state for unknown action", () => {
@@ -14,10 +18,7 @@ describe("Radar Reducer", () => {
     const expectedState = {};
     expectedState[radarId] = { id: radarId, name: "radar 1", items: {} };
 
-    const actualState = reducer(
-      emptyState,
-      actions.AddRadar(radarId, { id: radarId, name: "radar 1" })
-    );
+    const actualState = reducer(emptyState, actions.AddRadar("radar 1"));
     expect(actualState).toEqual(expectedState);
   });
 
@@ -51,14 +52,15 @@ describe("Radar Reducer", () => {
           ring: "adopt",
           section: "secular",
           notes: "note not no n",
-          key: 'new item'
+          key: "new item"
         }
       }
     };
 
     const actualState = reducer(
       previousState,
-      actions.AddRadarItem(radarId, 
+      actions.AddRadarItem(
+        radarId,
         "new item",
         "adopt",
         "secular",

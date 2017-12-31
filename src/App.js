@@ -19,7 +19,9 @@ import RadarDisplay from "./RadarDisplay";
 import ListDisplay from "./ListDisplay";
 import { AddItem, AddItemFormReducer } from "./addItem";
 import ItemDetails from "./ItemDetails";
+
 import Dashboard from "./Dashboard";
+import { NewRadarReducer } from "./newRadarForm";
 import NavBarWrapper from "./NavBarWrapper";
 import NeedsARadarSelectedWrapper from "./components/NeedsARadarSelectedWrapper";
 import NeedsToBeLoggedIn from "./login/NeedsToBeLoggedIn";
@@ -49,7 +51,8 @@ const store = createStore(
     login: LoginReducer,
     history: HistoryReducer,
     radars: RadarsReducer,
-    currentRadar: CurrentRadarReducer
+    currentRadar: CurrentRadarReducer,
+    newRadarForm: NewRadarReducer
   }),
   previousState,
   applyMiddleware(middleware)

@@ -1,6 +1,6 @@
 import * as Actions from "../actions/RadarActionsCreator";
 export default (state = {}, action) => {
-  let newState = {...state};
+  let newState = { ...state };
   switch (action.type) {
     case Actions.AddRadarItem().type:
       newState[action.value.name] = action.value;
@@ -12,9 +12,3 @@ export default (state = {}, action) => {
       return state;
   }
 };
-
-function upsertItem(state, item) {
-  const newState = { ...state };
-  newState[item.name] = item;
-  return newState;
-}

@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 import * as RadarActionsCreator from "./actions/RadarActionsCreator";
+import { Actions as NewRadarActions, NewRadarForm } from "./newRadarForm";
 import { showRadar } from "./actions/RoutingActionCreator";
 import * as Colors from "./util/Colors";
-import Button from "./components/button/Button";
+import { Button } from "./components";
 
 const RadarsList = styled.div`
   display: flex;
@@ -45,7 +46,14 @@ class Dashboard extends React.Component {
             </a>
           ))}
         </RadarsList>
-        <Button onClick={this.props.populate}>Populate</Button>
+        {this.props.showAddDialogue ? (
+          <NewRadarForm />
+        ) : (
+          <div>
+            <Button onClick={this.props.populate}>Populate</Button>
+            <Button onClick={this.props.showNewRadar}>New Radar</Button>
+          </div>
+        )}
       </div>
     );
   }
@@ -53,7 +61,8 @@ class Dashboard extends React.Component {
 
 Dashboard.propTypes = {
   populate: PropTypes.func,
-  radars: PropTypes.array
+  radars: PropTypes.array,
+  showAddDialogue: PropTypes.func
 };
 
 const matchdispatchToProps = dispatch => {
@@ -61,6 +70,9 @@ const matchdispatchToProps = dispatch => {
     selectRadar: id => {
       dispatch(RadarActionsCreator.SelectRadar(id));
       dispatch(showRadar());
+    },
+    showNewRadar: () => {
+      dispatch(NewRadarActions.showAddRadarDialogue());
     },
     populate: () => {
       dispatch(
@@ -83,7 +95,8 @@ const matchdispatchToProps = dispatch => {
 };
 const matchStateToProps = state => {
   return {
-    radars: Object.keys(state.radars).map(key => [key, state.radars[key]])
+    radars: Object.keys(state.radars).map(key => [key, state.radars[key]]),
+    showAddDialogue: state.newRadarForm.showDialogue
   };
 };
 

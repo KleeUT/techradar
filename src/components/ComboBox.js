@@ -1,25 +1,26 @@
 import React from "react";
 import styled from "styled-components";
-import TextInput from "./TextInput";
-import propTypes from 'prop-types';
+import { TextInput } from "./index.js";
+import propTypes from "prop-types";
 
 const Option = styled.div`
-display:block;
-font-size:18px;
-padding:0.5rem;
-width:100%;
-background-color:#fff;
-:hover{
-  background-color:#f1f9f4;
-}`;
+  display: block;
+  font-size: 18px;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: #fff;
+  :hover {
+    background-color: #f1f9f4;
+  }
+`;
 
 const OptionDiv = styled.div`
-  display: ${props => props.displayDiv ? "block" : "none"}
+  display: ${props => (props.displayDiv ? "block" : "none")};
 `;
 
 OptionDiv.propTypes = {
   displayDiv: propTypes.bool
-}
+};
 
 class ComboBox extends React.Component {
   constructor(props) {

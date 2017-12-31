@@ -6,9 +6,7 @@ import styled from "styled-components";
 import * as FormActions from "./AddItemFormActions";
 import * as RadarActions from "../actions/RadarActionsCreator";
 import { showRadar } from "../actions/RoutingActionCreator";
-import Button from "../components/button/Button";
-import ComboBox from "../components/ComboBox";
-import TextInput from "../components/TextInput";
+import { TextInput, Button, ComboBox } from "../components";
 import RingSelector from "../components/RingSelector";
 
 const TextBox = styled.textarea`

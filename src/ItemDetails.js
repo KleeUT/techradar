@@ -5,9 +5,7 @@ import propTypes from "prop-types";
 import styled from "styled-components";
 import * as FormActions from "./actions/EditItemFormActions";
 import * as RadarActions from "./actions/RadarActionsCreator";
-import Button from "./components/button/Button";
-import ComboBox from "./components/ComboBox";
-import TextInput from "./components/TextInput";
+import { Button, ComboBox, TextInput } from "./components";
 
 const TextBox = styled.textarea`
   display: block;

@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { styled } from "styled-components";
 import { Button, TextInput } from "../components";
 
-import {Login} from './Actions'
+import { Login } from "./Actions";
 
 class LoginForm extends React.Component {
   render() {
@@ -17,12 +16,12 @@ class LoginForm extends React.Component {
     );
   }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onLogin: () => dispatch(Login('Test usr', 'Test password'))
-    }
-}
-const mapStateToProps = (state) => {
-    return {}
-}
+const mapDispatchToProps = dispatch => {
+  return {
+    onLogin: () => dispatch(Login("Test usr", "Test password"))
+  };
+};
+const mapStateToProps = state => {
+  return {};
+};
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
