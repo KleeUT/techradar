@@ -24,16 +24,13 @@ import Dashboard from "./Dashboard";
 import { NewRadarReducer } from "./newRadarForm";
 import NavBarWrapper from "./NavBarWrapper";
 import NeedsARadarSelectedWrapper from "./components/NeedsARadarSelectedWrapper";
-import NeedsToBeLoggedIn from "./login/NeedsToBeLoggedIn";
 
 import LoggingReducer from "./reducers/LoggingReducer";
 import EditItemFormReducer from "./reducers/EditItemFormReducer";
 import HistoryReducer from "./reducers/HistoryReducer";
 import RadarsReducer from "./reducers/RadarsReducer";
 import CurrentRadarReducer from "./reducers/CurrentRadarReducer";
-import LoginReducer from "./login/LoginReducer";
-import LoginFormReducer from "./login/LoginFormReducer";
-
+import { NeedsToBeLoggedIn, LoginReducer, LoginFormReducer } from "./login";
 const history = createHistory();
 const middleware = routerMiddleware(history);
 

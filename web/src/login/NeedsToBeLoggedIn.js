@@ -1,18 +1,14 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import LoginForm from './LoginForm';
+import LoginForm from "./LoginForm";
 
-const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: Boolean(state.login.user)
-    }
-}
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.login.user.isLoggedIn
+  };
+};
 
-export default connect(mapStateToProps)(({isLoggedIn, children}) => {
-    return (
-        <div>
-            {isLoggedIn ? children : <LoginForm />}        
-        </div>
-    )
+export default connect(mapStateToProps)(({ isLoggedIn, children }) => {
+  return <div>{isLoggedIn ? children : <LoginForm />}</div>;
 });

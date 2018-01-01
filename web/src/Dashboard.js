@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
   populate: PropTypes.func,
   radars: PropTypes.array,
-  showAddDialogue: PropTypes.func
+  showAddDialogue: PropTypes.bool
 };
 
 const matchdispatchToProps = dispatch => {

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Button, TextInput } from "../components";
 
-import { Login } from "./Actions";
+import { Login } from "./LoginActionsCreator";
 
 class LoginForm extends React.Component {
   render() {
