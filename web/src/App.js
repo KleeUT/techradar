@@ -30,27 +30,41 @@ import EditItemFormReducer from "./reducers/EditItemFormReducer";
 import HistoryReducer from "./reducers/HistoryReducer";
 import RadarsReducer from "./reducers/RadarsReducer";
 import CurrentRadarReducer from "./reducers/CurrentRadarReducer";
-import { NeedsToBeLoggedIn, LoginReducer, LoginFormReducer } from "./login";
+import {
+  NeedsToBeLoggedIn,
+  LoginReducer,
+  LoginFormReducer,
+  LoginActionsCreator
+} from "./login";
 const history = createHistory();
 const middleware = routerMiddleware(history);
 
 const previousState = loadState();
+const appReducer = combineReducers({
+  LoggingReducer,
+  router: routerReducer,
+
+  addItemForm: AddItemFormReducer,
+  editItemForm: EditItemFormReducer,
+  loginForm: LoginFormReducer,
+
+  login: LoginReducer,
+  history: HistoryReducer,
+  radars: RadarsReducer,
+  currentRadar: CurrentRadarReducer,
+  newRadarForm: NewRadarReducer
+});
+
+const rootReducer = (state, action) => {
+  if (action.type === LoginActionsCreator.Types.Logout) {
+    const { router } = state;
+    state = { router };
+  }
+  return appReducer(state, action);
+};
 
 const store = createStore(
-  combineReducers({
-    LoggingReducer,
-    router: routerReducer,
-
-    addItemForm: AddItemFormReducer,
-    editItemForm: EditItemFormReducer,
-    loginForm: LoginFormReducer,
-
-    login: LoginReducer,
-    history: HistoryReducer,
-    radars: RadarsReducer,
-    currentRadar: CurrentRadarReducer,
-    newRadarForm: NewRadarReducer
-  }),
+  rootReducer,
   previousState,
   applyMiddleware(middleware)
 );
