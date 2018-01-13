@@ -16,14 +16,20 @@ const Label = styled.label`
   visibility: ${props => (props.shouldDisplay ? "visible" : "hidden")};
 `;
 
-const TextInput = ({ onChange, text, label, validate = () => true }) => {
+const TextInput = ({
+  onChange,
+  text,
+  label,
+  validate = () => true,
+  type = "text"
+}) => {
   let valid = validate(text);
 
   return (
     <div>
       <Label shouldDisplay={!!text}>{label}</Label>
       <Input
-        type="text"
+        type={type}
         onChange={onChange}
         value={text}
         valid={valid}

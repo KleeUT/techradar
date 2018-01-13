@@ -1,19 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Button from "./Button";
 import renderer from "react-test-renderer";
-
-describe("Button: ", () => {
+import Password from "./Password";
+describe("Password Input: ", () => {
   it(" renders without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(
-      <Button onClick={() => console.log("something")}>With Text</Button>,
+      <Password
+        text={"With Text"}
+        onChange={e => console.log()}
+        label="password"
+      />,
       div
     );
   });
 
   it(" passes snapshot tests", () => {
-    const component = renderer.create(<Button>Snap Shot Tests</Button>);
+    const component = renderer.create(
+      <Password
+        text={"With some password"}
+        onChange={e => console.log()}
+        label="password"
+      />
+    );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });

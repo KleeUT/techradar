@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, TextInput } from "../components";
+import { Button, TextInput, Password } from "../components";
 
 import { Login } from "./LoginActionsCreator";
 
@@ -10,7 +10,7 @@ class LoginForm extends React.Component {
       <div>
         <h1>Login</h1>
         <TextInput label="Username: " />
-        <TextInput label="Password: " />
+        <Password label="Password: " />
         <Button onClick={this.props.onLogin}>Login</Button>
       </div>
     );
