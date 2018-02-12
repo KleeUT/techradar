@@ -11,7 +11,7 @@ import {
 
 import propTypes from "prop-types";
 
-const ListDisplay = ({
+const RadarDisplay = ({
   radarId,
   radarName,
   radarItems,
@@ -41,7 +41,7 @@ const ListDisplay = ({
   );
 };
 
-ListDisplay.propTypes = {
+RadarDisplay.propTypes = {
   radarItems: propTypes.array,
   addItem: propTypes.func,
   radarName: propTypes.string,
@@ -122,4 +122,4 @@ const matchStateToProps = state => {
   };
 };
 
-export default connect(matchStateToProps, matchDispachToProps)(ListDisplay);
+export default connect(matchStateToProps, matchDispachToProps)(RadarDisplay);

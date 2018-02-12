@@ -17,6 +17,7 @@ import { loadState, saveState } from "./util/LocalStorageStatePersister";
 
 import RadarDisplay from "./RadarDisplay";
 import ListDisplay from "./ListDisplay";
+import { RadarTableDisplay } from "./radarTableDisplay";
 import { AddItem, AddItemFormReducer } from "./addItem";
 import ItemDetails from "./ItemDetails";
 
@@ -123,6 +124,14 @@ class App extends Component {
                     component={() => (
                       <NeedsARadarSelectedWrapper>
                         <ListDisplay />
+                      </NeedsARadarSelectedWrapper>
+                    )}
+                  />
+                  <Route
+                    path="/table"
+                    component={() => (
+                      <NeedsARadarSelectedWrapper>
+                        <RadarTableDisplay />
                       </NeedsARadarSelectedWrapper>
                     )}
                   />

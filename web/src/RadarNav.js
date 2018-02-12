@@ -8,7 +8,8 @@ import { LoginActionsCreator } from "./login";
 import {
   showDashboard,
   showRadar,
-  showListView
+  showListView,
+  showTableView
 } from "./actions/RoutingActionCreator";
 
 const Nav = styled.nav`
@@ -70,6 +71,13 @@ class RadarNav extends React.Component {
         ) : (
           ""
         )}
+        {this.props.hasRadarSelected ? (
+          <Link onClick={() => this.props.navigate(showTableView())}>
+            Table
+          </Link>
+        ) : (
+          ""
+        )}
         <FillSpace />
         <Username>{this.props.username}</Username>
         {this.props.isLoggedIn ? (
@@ -91,7 +99,6 @@ RadarNav.propTypes = {
 };
 
 const matchdispatchToProps = dispatch => {
-  var self = this;
   return {
     navigate: navigationAction => dispatch(navigationAction),
     logout: () => {
