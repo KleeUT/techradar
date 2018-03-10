@@ -17,10 +17,6 @@ class RadarGridDisplay extends React.Component {
             />
           );
         })}
-        {/* <RingView ring="Adopt" items={this.props.radarByRing.Adopt} /> */}
-        {/* <RingView ring="Trial" items={this.props.radarByRing.Trial} /> */}
-        {/* <RingView ring="Assess" items={this.props.radarByRing.Assess} /> */}
-        {/* <RingView ring="Hold" items={this.props.radarByRing.Hold} /> */}
       </div>
     );
   }
