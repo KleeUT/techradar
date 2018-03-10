@@ -1,17 +1,26 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import * as Colors from '../util/Colors'
+import * as Colors from "../util/Colors";
+import { sortedRings } from "../util/RingConstants";
 class RadarGridDisplay extends React.Component {
   render() {
     console.log("render");
     return (
       <div>
         <h1>{this.props.radarName}</h1>
-        <RingView ring="Adopt" items={this.props.radarByRing.Adopt} />
-        <RingView ring="Trial" items={this.props.radarByRing.Trial} />
-        <RingView ring="Assess" items={this.props.radarByRing.Assess} />
-        <RingView ring="Hold" items={this.props.radarByRing.Hold} />
+        {this.props.rings.map(ring => {
+          return (
+            <RingView
+              ring={ring.name}
+              items={this.props.radarByRing[ring.name]}
+            />
+          );
+        })}
+        {/* <RingView ring="Adopt" items={this.props.radarByRing.Adopt} /> */}
+        {/* <RingView ring="Trial" items={this.props.radarByRing.Trial} /> */}
+        {/* <RingView ring="Assess" items={this.props.radarByRing.Assess} /> */}
+        {/* <RingView ring="Hold" items={this.props.radarByRing.Hold} /> */}
       </div>
     );
   }
@@ -31,7 +40,8 @@ const matchStateToProps = state => {
       .map(x => currentRadar.items[x])
       .filter(x => x !== undefined),
     radarName: currentRadar.name,
-    radarId: state.currentRadar
+    radarId: state.currentRadar,
+    rings: sortedRings()
   };
 };
 
@@ -48,12 +58,10 @@ function breakRadarIntoRings(radar) {
       }
       return p;
     },
-    {
-      Adopt: [],
-      Trial: [],
-      Assess: [],
-      Hold: []
-    }
+    sortedRings().reduce((p, c) => {
+      p[c.name] = [];
+      return p;
+    }, {})
   );
   return ringed;
 }
@@ -61,7 +69,7 @@ function breakRadarIntoRings(radar) {
 const ItemBox = styled.div`
   padding: 0.5rem;
   grid-column: auto;
-  background-color: ${Colors.ActiveDutyGreen}
+  background-color: ${Colors.ActiveDutyGreen};
 `;
 const RingContainer = styled.div`
   display: grid;
@@ -73,12 +81,10 @@ const RingContainer = styled.div`
   }
 `;
 
-const RingItemTitle = styled.h2`
-
-`;
+const RingItemTitle = styled.h2``;
 
 const RadarItemTitle = styled.h3`
-  text-align:center;
+  text-align: center;
 `;
 const RingView = ({ ring, items }) => {
   return (
