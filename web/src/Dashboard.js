@@ -18,12 +18,12 @@ const RadarInstance = styled.div`
   width: 10rem;
   height: 7rem;
   margin: 0.25rem;
-  background-image: url(/radar.svg);
+  background-image: url(/radarbw.svg);
 
   background-repeat: no-repeat;
   background-attachment: local;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
